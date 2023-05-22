@@ -9,7 +9,7 @@ import * as chalk from "chalk";
 import { networks } from "../../utils/constants";
 
 export default class BlockNumber extends Command {
-  static aliases: string[] = ["block-number", "bn"];
+  static aliases: string[] = ["block-number"];
   static description =
     "gets latest block number of specified network(default: mainnet)";
 
