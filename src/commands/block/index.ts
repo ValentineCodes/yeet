@@ -12,7 +12,7 @@ export default class BlockIndex extends Command {
 
   static examples = [
     "<%= config.bin %> <%= command.id %> [block-number]",
-    "<%= config.bin %> <%= command.id %> [block-number | block-hash] --network [network]",
+    "<%= config.bin %> <%= command.id %> [block-number | block-hash] --network [network] --rpc_url [url]",
   ];
 
   static flags = {
