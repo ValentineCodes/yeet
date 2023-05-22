@@ -1,3 +1,5 @@
+export const ALCHEMY_KEY = "3r2DCLym4DBk_vrcyHZxw5LsnrOyoxWG";
+export const ETHERSCAN_KEY = "HY44G42FN4UN1DEYSAN3SAVG639ZYXDJDT";
 export const networks = [
   "localhost",
   "mainnet",

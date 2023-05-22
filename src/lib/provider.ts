@@ -1,6 +1,5 @@
 import { ethers } from "ethers";
-
-const ALCHEMY_KEY = "3r2DCLym4DBk_vrcyHZxw5LsnrOyoxWG";
+import { ALCHEMY_KEY } from "../utils/constants";
 
 export interface Providers {
   localhost: string;
