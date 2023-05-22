@@ -19,7 +19,9 @@
   "dependencies": {
     "@oclif/core": "^2",
     "@oclif/plugin-help": "^5",
-    "@oclif/plugin-plugins": "^2.4.7"
+    "@oclif/plugin-plugins": "^2.4.7",
+    "chalk": "4.1.2",
+    "ethers": "^6.4.0"
   },
   "devDependencies": {
     "@oclif/test": "^2.3.20",
@@ -62,7 +64,9 @@
     "version": "oclif readme && git add README.md",
     "command": "oclif generate command",
     "yeet:dev": "./bin/dev",
-    "yeet:run": "./bin/run"
+    "yeet:run": "./bin/run",
+    "yeet:dev:debug": "DEBUG=* ./bin/dev",
+    "yeet:run:debug": "DEBUG=* ./bin/run"
   },
   "engines": {
     "node": ">=12.0.0"
