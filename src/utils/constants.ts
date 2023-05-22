@@ -10,3 +10,13 @@ export const networks = [
   "polygon",
   "polygonMumbai",
 ];
+
+export const units = [
+  "wei",
+  "kwei",
+  "mwei",
+  "gwei",
+  "szabo",
+  "finney",
+  "ether",
+];
