@@ -44,8 +44,6 @@ export default class BlockIndex extends Command {
       provider = getProviderWithName(flags.network as keyof Providers);
     }
 
-    getProviderWithName(flags.network as keyof Providers);
-
     let blockNumber: number;
     if (args.block_number === undefined) {
       blockNumber = await provider.getBlockNumber();
