@@ -18,8 +18,7 @@ export default class BlockNumber extends Command {
   ];
 
   static flags = {
-    network: Flags.string({
-      char: "n",
+    rpc_url: Flags.string({
       description: "network provider rpc url",
     }),
   };
@@ -50,8 +49,8 @@ export default class BlockNumber extends Command {
       args.network as keyof Providers
     );
 
-    if (flags.network) {
-      provider = getProviderWithURL(flags.network);
+    if (flags.rpc_url) {
+      provider = getProviderWithURL(flags.rpc_url);
     } else {
       provider = getProviderWithName(args.network as keyof Providers);
     }
