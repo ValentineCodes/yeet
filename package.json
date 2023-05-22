@@ -1,7 +1,7 @@
 {
   "name": "@vc/yeet",
   "version": "0.0.0",
-  "description": "An ETH CLI for querying blockchain data",
+  "description": "A CLI for querying blockchain data and generating accounts",
   "author": "Valentine Orga",
   "bin": {
     "yeet": "./bin/run"
