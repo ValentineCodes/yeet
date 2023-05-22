@@ -1,19 +1,21 @@
 import { Args, Command, Flags } from "@oclif/core";
+import chalk = require("chalk");
 import { Provider } from "ethers";
 import {
-  Providers,
-  getProviderWithName,
   getProviderWithURL,
+  getProviderWithName,
+  Providers,
 } from "../../lib/provider";
-import * as chalk from "chalk";
 import { networks } from "../../utils/constants";
 
-export default class AddressIndex extends Command {
-  static aliases: string[] = ["ens-address"];
+export default class AddressAddressEns extends Command {
+  static aliases: string[] = ["address-ens"];
 
-  static description = "gets address of ens";
+  static description = "gets ens of address";
 
-  static examples = ["<%= config.bin %> <%= command.id %> ens-address <ens>"];
+  static examples = [
+    "<%= config.bin %> <%= command.id %> address-ens <address>",
+  ];
 
   static flags = {
     rpc_url: Flags.string({
@@ -28,11 +30,11 @@ export default class AddressIndex extends Command {
   };
 
   static args = {
-    ens: Args.string({ description: "ENS name", required: true }),
+    account: Args.string({ description: "account address", required: true }),
   };
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(AddressIndex);
+    const { args, flags } = await this.parse(AddressAddressEns);
 
     let provider: Provider;
 
@@ -42,12 +44,12 @@ export default class AddressIndex extends Command {
       provider = getProviderWithName(flags.network as keyof Providers);
     }
 
-    const address = await provider.resolveName(args.ens);
+    const ens = await provider.lookupAddress(args.account);
 
-    if (address) {
-      console.log(chalk.green(address));
+    if (ens) {
+      console.log(chalk.green(ens));
     } else {
-      this.log("No address");
+      this.log("No ENS");
     }
   }
 }
