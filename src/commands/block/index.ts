@@ -8,7 +8,7 @@ import { Block, Provider } from "ethers";
 import * as chalk from "chalk";
 import { networks } from "../../utils/constants";
 export default class BlockIndex extends Command {
-  static description = "describe the command here";
+  static description = "gets block object from block number or hash";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> [block-number]",

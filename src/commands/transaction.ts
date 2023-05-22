@@ -9,7 +9,7 @@ import {
 
 export default class Transaction extends Command {
   static aliases: string[] = ["tx"];
-  static description = "describe the command here";
+  static description = "gets transaction object from transaction hash";
 
   static examples = ["<%= config.bin %> <%= command.id %> tx <txHash>"];
 

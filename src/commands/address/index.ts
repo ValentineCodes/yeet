@@ -4,7 +4,7 @@ import { getProviderWithName } from "../../lib/provider";
 import * as chalk from "chalk";
 
 export default class AddressIndex extends Command {
-  static description = "describe the command here";
+  static description = "resolves ens name to it's address on Ethereum mainnet";
 
   static examples = ["<%= config.bin %> <%= command.id %> address <ens>"];
 

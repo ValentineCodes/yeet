@@ -11,7 +11,7 @@ import {
 export default class AddressBalance extends Command {
   static aliases: string[] = ["address-balance"];
 
-  static description = "describe the command here";
+  static description = "gets address balance of address or ens";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> address-balance <address>",
