@@ -1,5 +1,4 @@
 ```shell
-  yeet block-number [network]
-  yeet block-number --network <RPC_URL>
-  yeet block [block-number] --network [network]
+  yeet address <ens_name>
+  yeet address-balance <address> --format [ethers | wei, e.t.c]
 ```
