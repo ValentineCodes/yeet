@@ -1,30 +1,48 @@
-import {Args, Command, Flags} from '@oclif/core'
-
+import { Args, Command, Flags } from "@oclif/core";
+import { Providers, getProviderWithName } from "../../lib/provider";
+import { Block, Provider } from "ethers";
+import * as chalk from "chalk";
+import { networks } from "../../utils/constants";
 export default class BlockIndex extends Command {
-  static description = 'describe the command here'
+  static description = "describe the command here";
 
   static examples = [
-    '<%= config.bin %> <%= command.id %>',
-  ]
+    "<%= config.bin %> <%= command.id %> [block-number]",
+    "<%= config.bin %> <%= command.id %> [block-number | block-hash] --network [network]",
+  ];
 
   static flags = {
-    // flag with a value (-n, --name=VALUE)
-    name: Flags.string({char: 'n', description: 'name to print'}),
-    // flag with no value (-f, --force)
-    force: Flags.boolean({char: 'f'}),
-  }
+    network: Flags.string({
+      char: "n",
+      description: "network to read from",
+      options: networks,
+      default: "mainnet",
+    }),
+  };
 
   static args = {
-    file: Args.string({description: 'file to read'}),
-  }
+    block_number: Args.string({ description: "block number" }),
+  };
+
+  public static enableJsonFlag = true;
 
   public async run(): Promise<void> {
-    const {args, flags} = await this.parse(BlockIndex)
+    const { args, flags } = await this.parse(BlockIndex);
 
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from /Users/macintosh/Desktop/projects/web3/yeet/src/commands/block/index.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
+    const provider: Provider = getProviderWithName(
+      flags.network as keyof Providers
+    );
+
+    let blockNumber: number;
+    if (args.block_number === undefined) {
+      blockNumber = await provider.getBlockNumber();
+    } else {
+      blockNumber = Number(args.block_number);
     }
+
+    const block: Block | null = await provider.getBlock(blockNumber);
+
+    this.log(`${chalk.hex("#9F2B68")(flags.network.toUpperCase())}`);
+    console.log(block);
   }
 }

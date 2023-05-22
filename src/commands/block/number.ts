@@ -6,6 +6,7 @@ import {
 } from "../../lib/provider";
 import { Provider } from "ethers";
 import * as chalk from "chalk";
+import { networks } from "../../utils/constants";
 
 export default class BlockNumber extends Command {
   static aliases: string[] = ["block-number", "bn"];
@@ -26,18 +27,7 @@ export default class BlockNumber extends Command {
   static args = {
     network: Args.string({
       description: "network to read from",
-      options: [
-        "localhost",
-        "mainnet",
-        "sepolia",
-        "goerli",
-        "arbitrum",
-        "arbitrumGoerli",
-        "optimism",
-        "optimismGoerli",
-        "polygon",
-        "polygonMumbai",
-      ],
+      options: networks,
       default: "mainnet",
     }),
   };
