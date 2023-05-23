@@ -12,7 +12,10 @@ interface NewWallet {
 export default class GenerateAccount extends Command {
   static description = "generates a new random account";
 
-  static examples = ["<%= config.bin %> <%= command.id %> generateAccount"];
+  static examples = [
+    "<%= config.bin %> <%= command.id %> generateAccount",
+    "<%= config.bin %> <%= command.id %> generateAccount --no-export",
+  ];
 
   static flags = {
     "no-export": Flags.boolean({

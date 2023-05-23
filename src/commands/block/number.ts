@@ -9,8 +9,8 @@ export default class BlockNumber extends Command {
   static description = "gets latest block number. default network: localhost";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> [NETWORK NAME]",
-    "<%= config.bin %> <%= command.id %> --network [RPC URL]",
+    "<%= config.bin %> <%= command.id %> --mainnet",
+    "<%= config.bin %> <%= command.id %> --rpc_url=[PROVIDER_URL]",
   ];
 
   static flags = {

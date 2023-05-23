@@ -13,7 +13,9 @@ export default class AddressBalance extends Command {
     "gets address balance of address or ens. default network: localhost";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> address-balance <address>",
+    "<%= config.bin %> <%= command.id %> <address|ens> --mainnet",
+    "<%= config.bin %> <%= command.id %> <address|ens> --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> <address|ens> --mainnet --wei",
   ];
 
   static flags = {

@@ -14,7 +14,11 @@ export default class Transactions extends Command {
 
   static description = "lists all past transactions of account";
 
-  static examples = ["<%= config.bin %> <%= command.id %> txs <address|ens>"];
+  static examples = [
+    "<%= config.bin %> <%= command.id %> <address|ens> --mainnet",
+    "<%= config.bin %> <%= command.id %> <address|ens> --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> <address|ens> --sepolia --export,-e",
+  ];
 
   static flags = {
     ...etherscanNetworkFlags,

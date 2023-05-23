@@ -12,7 +12,10 @@ export default class Transaction extends Command {
   static aliases: string[] = ["tx"];
   static description = "gets transaction object from transaction hash";
 
-  static examples = ["<%= config.bin %> <%= command.id %> tx <txHash>"];
+  static examples = [
+    "<%= config.bin %> <%= command.id %> <txHash> --mainnet",
+    "<%= config.bin %> <%= command.id %> <txHash> --rpc_url=[PROVIDER_URL]",
+  ];
 
   static flags = {
     ...providerNetworkFlags,
