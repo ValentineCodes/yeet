@@ -81,7 +81,7 @@ export default class Transactions extends Command {
             console.log(transactions.result);
             throw new Error(JSON.stringify(error));
           } else {
-            console.log("File written successfully✅");
+            console.log("Transactions retrieved successfully✅");
             console.log(
               `Written to ${chalk.green.underline.bold("./transactions.json")}`
             );

@@ -101,7 +101,7 @@ export default class EventsIndex extends Command {
             console.log(events.result);
             throw new Error(JSON.stringify(error));
           } else {
-            console.log("File written successfully✅");
+            console.log("Events retrieved successfully✅");
             console.log(
               `Written to ${chalk.green.underline.bold("./events.json")}`
             );
