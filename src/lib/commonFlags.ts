@@ -69,3 +69,20 @@ export const providerNetworkFlags = {
     ],
   }),
 };
+
+const etherscanNetworks = ["mainnet", "goerli", "sepolia"];
+
+export const etherscanNetworkFlags = {
+  mainnet: Flags.boolean({
+    description: "etherscan supported network",
+    exclusive: etherscanNetworks.filter((network) => network !== "mainnet"),
+  }),
+  goerli: Flags.boolean({
+    description: "etherscan supported network",
+    exclusive: etherscanNetworks.filter((network) => network !== "goerli"),
+  }),
+  sepolia: Flags.boolean({
+    description: "etherscan supported network",
+    exclusive: etherscanNetworks.filter((network) => network !== "sepolia"),
+  }),
+};

@@ -3,14 +3,10 @@ import { Provider, ethers } from "ethers";
 import axios from "axios";
 import * as chalk from "chalk";
 import * as fs from "fs";
-import {
-  getProviderWithURL,
-  getProviderWithName,
-  Providers,
-  getProvider,
-} from "../../lib/provider";
+import { getProvider } from "../../lib/provider";
 import { ETHERSCAN_KEY } from "../../utils/constants";
-import { etherscanNetworkFlags, getEtherscanDomain } from "../../lib/etherscan";
+import { getEtherscanDomain } from "../../lib/etherscan";
+import { etherscanNetworkFlags } from "../../lib/commonFlags";
 
 export default class EventsIndex extends Command {
   static description = "get past event logs of given address";

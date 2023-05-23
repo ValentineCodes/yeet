@@ -1,12 +1,13 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { Provider, ethers } from "ethers";
-import { Providers, getProvider, getProviderWithName } from "../lib/provider";
+import { getProvider } from "../lib/provider";
 import axios from "axios";
 import * as chalk from "chalk";
 import * as fs from "fs";
 
 import { ETHERSCAN_KEY } from "../utils/constants";
-import { etherscanNetworkFlags, getEtherscanDomain } from "../lib/etherscan";
+import { getEtherscanDomain } from "../lib/etherscan";
+import { etherscanNetworkFlags } from "../lib/commonFlags";
 
 export default class Transactions extends Command {
   static aliases: string[] = ["txs"];
