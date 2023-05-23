@@ -1,17 +1,17 @@
-import {expect, test} from '@oclif/test'
+import { expect, test } from "@oclif/test";
+import { getProviderWithName } from "../../utils/provider";
 
-describe('block/number', () => {
+describe("block-number", () => {
   test
-  .stdout()
-  .command(['block/number'])
-  .it('runs hello', ctx => {
-    expect(ctx.stdout).to.contain('hello world')
-  })
+    .stdout()
+    .command(["block-number", "--mainnet"])
+    .it(
+      "retrieves the latest block number of specified network(mainnet)",
+      async (ctx) => {
+        const provider = getProviderWithName("mainnet");
+        const blockNumber = await provider.getBlockNumber();
 
-  test
-  .stdout()
-  .command(['block/number', '--name', 'jeff'])
-  .it('runs hello --name jeff', ctx => {
-    expect(ctx.stdout).to.contain('hello jeff')
-  })
-})
+        expect(ctx.stdout).to.contain(blockNumber);
+      }
+    );
+});

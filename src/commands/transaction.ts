@@ -1,11 +1,6 @@
-import { Args, Command, Flags } from "@oclif/core";
+import { Args, Command } from "@oclif/core";
 import { Provider, TransactionResponse } from "ethers";
-import {
-  getProviderWithURL,
-  getProviderWithName,
-  Providers,
-  getProvider,
-} from "../lib/provider";
+import { getProvider } from "../lib/provider";
 import { providerNetworkFlags } from "../lib/flags/networkFlags";
 
 export default class Transaction extends Command {
