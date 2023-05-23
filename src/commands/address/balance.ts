@@ -1,6 +1,5 @@
-import { Args, Command, Flags } from "@oclif/core";
-import { units } from "../../utils/constants";
-import { BigNumberish, Provider, ethers } from "ethers";
+import { Args, Command } from "@oclif/core";
+import { BigNumberish, Provider } from "ethers";
 import * as chalk from "chalk";
 import { getProvider } from "../../lib/provider";
 import { providerNetworkFlags } from "../../lib/flags/networkFlags";
@@ -8,6 +7,8 @@ import { ethUnitFlags } from "../../lib/flags/cryptoUnitFlags";
 import { formatUnits } from "../../lib/cryptoUnitConverter";
 
 export default class AddressBalance extends Command {
+  static aliases: string[] = ["address-balance"];
+
   static description =
     "gets address balance of address or ens. default network: localhost";
 

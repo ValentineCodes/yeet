@@ -5,7 +5,7 @@ import { getProvider } from "../../lib/provider";
 import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class AddressAddressEns extends Command {
-  static aliases: string[] = ["address:ens"];
+  static aliases: string[] = ["address-ens"];
 
   static description = "gets ens of address";
 

@@ -5,7 +5,7 @@ import * as chalk from "chalk";
 import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class AddressIndex extends Command {
-  static aliases: string[] = ["ens:address"];
+  static aliases: string[] = ["ens-address"];
 
   static description = "gets address of ens";
 
