@@ -53,8 +53,6 @@ export default class EventsIndex extends Command {
       provider = getProviderWithName(flags.network as keyof Providers);
     }
 
-    const blockNumber = await provider.getBlockNumber();
-
     let address;
 
     if (args.account.includes(".")) {
@@ -78,6 +76,8 @@ export default class EventsIndex extends Command {
         break;
     }
 
+    const blockNumber = await provider.getBlockNumber();
+
     const { data: events } = await axios.get(
       `${domain}/api?module=logs&action=getLogs&address=${address}&fromBlock=${
         flags.from
@@ -89,18 +89,27 @@ export default class EventsIndex extends Command {
     this.log(chalk.hex("#9F2B68")(flags.network.toUpperCase()));
 
     if (flags.export) {
-      fs.writeFile("events.json", JSON.stringify(events.result), (error) => {
-        if (error) {
-          console.log(events.result);
-          throw new Error(JSON.stringify(error));
-        } else {
-          console.log("File written successfully✅");
-          console.log(
-            `Written to ${chalk.green.underline.bold("./events.json")}`
-          );
+      fs.writeFile(
+        "events.json",
+        JSON.stringify({
+          total: events.result.length,
+          events: events.result,
+        }),
+        (error) => {
+          if (error) {
+            console.log(`Total: ${chalk.green(events.result.length)}`);
+            console.log(events.result);
+            throw new Error(JSON.stringify(error));
+          } else {
+            console.log("File written successfully✅");
+            console.log(
+              `Written to ${chalk.green.underline.bold("./events.json")}`
+            );
+          }
         }
-      });
+      );
     } else {
+      console.log(`Total: ${chalk.green(events.result.length)}`);
       console.log(events.result);
     }
   }

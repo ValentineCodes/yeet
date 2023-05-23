@@ -71,9 +71,13 @@ export default class Transactions extends Command {
     if (flags.export) {
       fs.writeFile(
         "transactions.json",
-        JSON.stringify(transactions.result),
+        JSON.stringify({
+          total: transactions.result.length,
+          transactions: transactions.result,
+        }),
         (error) => {
           if (error) {
+            console.log(`Total: ${chalk.green(transactions.result.length)}`);
             console.log(transactions.result);
             throw new Error(JSON.stringify(error));
           } else {
@@ -85,6 +89,7 @@ export default class Transactions extends Command {
         }
       );
     } else {
+      console.log(`Total: ${chalk.green(transactions.result.length)}`);
       console.log(transactions.result);
     }
   }
