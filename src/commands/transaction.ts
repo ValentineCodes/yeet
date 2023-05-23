@@ -5,7 +5,9 @@ import {
   getProviderWithURL,
   getProviderWithName,
   Providers,
+  getProvider,
 } from "../lib/provider";
+import { providerNetworkFlags } from "../lib/commonFlags";
 
 export default class Transaction extends Command {
   static aliases: string[] = ["tx"];
@@ -14,15 +16,7 @@ export default class Transaction extends Command {
   static examples = ["<%= config.bin %> <%= command.id %> tx <txHash>"];
 
   static flags = {
-    rpc_url: Flags.string({
-      description: "network provider rpc url",
-    }),
-    network: Flags.string({
-      char: "n",
-      description: "network to read from",
-      options: networks,
-      default: "mainnet",
-    }),
+    ...providerNetworkFlags,
   };
 
   static args = {
@@ -32,13 +26,7 @@ export default class Transaction extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Transaction);
 
-    let provider: Provider;
-
-    if (flags.rpc_url) {
-      provider = getProviderWithURL(flags.rpc_url);
-    } else {
-      provider = getProviderWithName(flags.network as keyof Providers);
-    }
+    let provider: Provider = getProvider(flags);
 
     const transaction: TransactionResponse | null =
       await provider.getTransaction(args.txHash);

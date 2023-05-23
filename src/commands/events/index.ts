@@ -7,8 +7,10 @@ import {
   getProviderWithURL,
   getProviderWithName,
   Providers,
+  getProvider,
 } from "../../lib/provider";
 import { ETHERSCAN_KEY } from "../../utils/constants";
+import { etherscanNetworkFlags, getEtherscanDomain } from "../../lib/etherscan";
 
 export default class EventsIndex extends Command {
   static description = "get past event logs of given address";
@@ -26,16 +28,11 @@ export default class EventsIndex extends Command {
       description: "number of logs per page. Limit: 1000",
       default: "1000",
     }),
-    network: Flags.string({
-      char: "n",
-      description: "network to read from",
-      options: ["mainnet", "goerli", "sepolia"],
-      default: "mainnet",
-    }),
     export: Flags.boolean({
       char: "e",
       description: "exports events to 'events.json' file in current directory",
     }),
+    ...etherscanNetworkFlags,
   };
 
   static args = {
@@ -45,13 +42,7 @@ export default class EventsIndex extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(EventsIndex);
 
-    let provider: Provider;
-
-    if (flags.rpc_url) {
-      provider = getProviderWithURL(flags.rpc_url);
-    } else {
-      provider = getProviderWithName(flags.network as keyof Providers);
-    }
+    let provider: Provider = getProvider(flags);
 
     let address;
 
@@ -63,18 +54,7 @@ export default class EventsIndex extends Command {
       throw new Error("Invalid address or ens");
     }
 
-    let domain: string;
-    switch (flags.network) {
-      case "goerli":
-        domain = "https://api-goerli.etherscan.io";
-        break;
-      case "sepolia":
-        domain = "https://api-sepolia.etherscan.io";
-        break;
-      default:
-        domain = "https://api.etherscan.io";
-        break;
-    }
+    let domain: string = getEtherscanDomain(flags);
 
     const blockNumber = await provider.getBlockNumber();
 
@@ -85,8 +65,6 @@ export default class EventsIndex extends Command {
         flags.offset
       }&apikey=${ETHERSCAN_KEY}`
     );
-
-    this.log(chalk.hex("#9F2B68")(flags.network.toUpperCase()));
 
     if (flags.export) {
       fs.writeFile(

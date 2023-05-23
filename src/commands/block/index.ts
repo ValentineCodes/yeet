@@ -1,14 +1,10 @@
-import { Args, Command, Flags } from "@oclif/core";
-import {
-  Providers,
-  getProviderWithName,
-  getProviderWithURL,
-} from "../../lib/provider";
+import { Args, Command } from "@oclif/core";
+import { getProvider } from "../../lib/provider";
 import { Block, Provider } from "ethers";
-import * as chalk from "chalk";
-import { networks } from "../../utils/constants";
+import { providerNetworkFlags } from "../../lib/commonFlags";
 export default class BlockIndex extends Command {
-  static description = "gets block object from block number or hash";
+  static description =
+    "gets block object from block number or hash. default network: Localhost";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> [block-number]",
@@ -16,15 +12,7 @@ export default class BlockIndex extends Command {
   ];
 
   static flags = {
-    rpc_url: Flags.string({
-      description: "network provider rpc url",
-    }),
-    network: Flags.string({
-      char: "n",
-      description: "network to read from",
-      options: networks,
-      default: "mainnet",
-    }),
+    ...providerNetworkFlags,
   };
 
   static args = {
@@ -36,13 +24,7 @@ export default class BlockIndex extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(BlockIndex);
 
-    let provider: Provider;
-
-    if (flags.rpc_url) {
-      provider = getProviderWithURL(flags.rpc_url);
-    } else {
-      provider = getProviderWithName(flags.network as keyof Providers);
-    }
+    let provider: Provider = getProvider(flags);
 
     let blockNumber: number;
     if (args.block_number === undefined) {
@@ -53,7 +35,6 @@ export default class BlockIndex extends Command {
 
     const block: Block | null = await provider.getBlock(blockNumber);
 
-    this.log(`${chalk.hex("#9F2B68")(flags.network.toUpperCase())}`);
     console.log(block);
   }
 }

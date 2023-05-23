@@ -1,30 +1,18 @@
-import { Args, Command, Flags } from "@oclif/core";
+import { Args, Command } from "@oclif/core";
 import { Provider } from "ethers";
-import {
-  Providers,
-  getProviderWithName,
-  getProviderWithURL,
-} from "../../lib/provider";
+import { getProvider } from "../../lib/provider";
 import * as chalk from "chalk";
-import { networks } from "../../utils/constants";
+import { providerNetworkFlags } from "../../lib/commonFlags";
 
 export default class AddressIndex extends Command {
-  static aliases: string[] = ["ens-address"];
+  static aliases: string[] = ["ens:address"];
 
   static description = "gets address of ens";
 
   static examples = ["<%= config.bin %> <%= command.id %> ens-address <ens>"];
 
   static flags = {
-    rpc_url: Flags.string({
-      description: "network provider rpc url",
-    }),
-    network: Flags.string({
-      char: "n",
-      description: "network to read from",
-      options: networks,
-      default: "mainnet",
-    }),
+    ...providerNetworkFlags,
   };
 
   static args = {
@@ -34,13 +22,7 @@ export default class AddressIndex extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(AddressIndex);
 
-    let provider: Provider;
-
-    if (flags.rpc_url) {
-      provider = getProviderWithURL(flags.rpc_url);
-    } else {
-      provider = getProviderWithName(flags.network as keyof Providers);
-    }
+    let provider: Provider = getProvider(flags);
 
     const address = await provider.resolveName(args.ens);
 

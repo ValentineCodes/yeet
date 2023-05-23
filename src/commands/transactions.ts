@@ -1,11 +1,12 @@
 import { Args, Command, Flags } from "@oclif/core";
 import { Provider, ethers } from "ethers";
-import { Providers, getProviderWithName } from "../lib/provider";
+import { Providers, getProvider, getProviderWithName } from "../lib/provider";
 import axios from "axios";
 import * as chalk from "chalk";
 import * as fs from "fs";
 
 import { ETHERSCAN_KEY } from "../utils/constants";
+import { etherscanNetworkFlags, getEtherscanDomain } from "../lib/etherscan";
 
 export default class Transactions extends Command {
   static aliases: string[] = ["txs"];
@@ -15,12 +16,7 @@ export default class Transactions extends Command {
   static examples = ["<%= config.bin %> <%= command.id %> txs <address|ens>"];
 
   static flags = {
-    network: Flags.string({
-      char: "n",
-      description: "network to read from",
-      options: ["mainnet", "goerli", "sepolia"],
-      default: "mainnet",
-    }),
+    ...etherscanNetworkFlags,
     export: Flags.boolean({
       char: "e",
       description:
@@ -35,9 +31,7 @@ export default class Transactions extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(Transactions);
 
-    const provider: Provider = getProviderWithName(
-      flags.network as keyof Providers
-    );
+    const provider: Provider = getProvider(flags);
 
     let address;
 
@@ -49,24 +43,11 @@ export default class Transactions extends Command {
       throw new Error("Invalid address or ens");
     }
 
-    let domain: string;
-    switch (flags.network) {
-      case "goerli":
-        domain = "https://api-goerli.etherscan.io";
-        break;
-      case "sepolia":
-        domain = "https://api-sepolia.etherscan.io";
-        break;
-      default:
-        domain = "https://api.etherscan.io";
-        break;
-    }
+    let domain: string = getEtherscanDomain(flags);
 
     const { data: transactions } = await axios.get(
       `${domain}/api?module=account&action=txlist&address=${address}&sort=asc&apikey=${ETHERSCAN_KEY}`
     );
-
-    this.log(chalk.hex("#9F2B68")(flags.network));
 
     if (flags.export) {
       fs.writeFile(
