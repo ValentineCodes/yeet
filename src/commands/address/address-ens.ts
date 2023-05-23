@@ -2,7 +2,7 @@ import { Args, Command } from "@oclif/core";
 import * as chalk from "chalk";
 import { Provider } from "ethers";
 import { getProvider } from "../../lib/provider";
-import { providerNetworkFlags } from "../../lib/commonFlags";
+import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class AddressAddressEns extends Command {
   static aliases: string[] = ["address:ens"];

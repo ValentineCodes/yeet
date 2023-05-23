@@ -1,5 +1,5 @@
 import { Flags } from "@oclif/core";
-import { networks } from "../utils/constants";
+import { providerNetworks, etherscanNetworks } from "../../utils/constants";
 
 export const providerNetworkFlags = {
   rpc_url: Flags.string({
@@ -9,68 +9,66 @@ export const providerNetworkFlags = {
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "mainnet"),
+      ...providerNetworks.filter((network) => network !== "mainnet"),
     ],
   }),
   sepolia: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "sepolia"),
+      ...providerNetworks.filter((network) => network !== "sepolia"),
     ],
   }),
   goerli: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "goerli"),
+      ...providerNetworks.filter((network) => network !== "goerli"),
     ],
   }),
   arbitrum: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "arbitrum"),
+      ...providerNetworks.filter((network) => network !== "arbitrum"),
     ],
   }),
   arbitrumGoerli: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "arbitrumGoerli"),
+      ...providerNetworks.filter((network) => network !== "arbitrumGoerli"),
     ],
   }),
   optimism: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "optimism"),
+      ...providerNetworks.filter((network) => network !== "optimism"),
     ],
   }),
   optimismGoerli: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "optimismGoerli"),
+      ...providerNetworks.filter((network) => network !== "optimismGoerli"),
     ],
   }),
   polygon: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "polygon"),
+      ...providerNetworks.filter((network) => network !== "polygon"),
     ],
   }),
   polygonMumbai: Flags.boolean({
     description: "provider network",
     exclusive: [
       "rpc_url",
-      ...networks.filter((network) => network !== "polygonMumbai"),
+      ...providerNetworks.filter((network) => network !== "polygonMumbai"),
     ],
   }),
 };
-
-const etherscanNetworks = ["mainnet", "goerli", "sepolia"];
 
 export const etherscanNetworkFlags = {
   mainnet: Flags.boolean({

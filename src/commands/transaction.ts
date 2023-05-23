@@ -1,5 +1,4 @@
 import { Args, Command, Flags } from "@oclif/core";
-import { networks } from "../utils/constants";
 import { Provider, TransactionResponse } from "ethers";
 import {
   getProviderWithURL,
@@ -7,7 +6,7 @@ import {
   Providers,
   getProvider,
 } from "../lib/provider";
-import { providerNetworkFlags } from "../lib/commonFlags";
+import { providerNetworkFlags } from "../lib/flags/networkFlags";
 
 export default class Transaction extends Command {
   static aliases: string[] = ["tx"];

@@ -7,7 +7,7 @@ import * as fs from "fs";
 
 import { ETHERSCAN_KEY } from "../utils/constants";
 import { getEtherscanDomain } from "../lib/etherscan";
-import { etherscanNetworkFlags } from "../lib/commonFlags";
+import { etherscanNetworkFlags } from "../lib/flags/networkFlags";
 
 export default class Transactions extends Command {
   static aliases: string[] = ["txs"];

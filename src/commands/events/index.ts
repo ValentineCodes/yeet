@@ -6,7 +6,7 @@ import * as fs from "fs";
 import { getProvider } from "../../lib/provider";
 import { ETHERSCAN_KEY } from "../../utils/constants";
 import { getEtherscanDomain } from "../../lib/etherscan";
-import { etherscanNetworkFlags } from "../../lib/commonFlags";
+import { etherscanNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class EventsIndex extends Command {
   static description = "get past event logs of given address";

@@ -1,7 +1,7 @@
 import { Args, Command } from "@oclif/core";
 import { getProvider } from "../../lib/provider";
 import { Block, Provider } from "ethers";
-import { providerNetworkFlags } from "../../lib/commonFlags";
+import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 export default class BlockIndex extends Command {
   static description =
     "gets block object from block number or hash. default network: Localhost";

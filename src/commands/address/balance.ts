@@ -3,7 +3,7 @@ import { units } from "../../utils/constants";
 import { BigNumberish, Provider, ethers } from "ethers";
 import * as chalk from "chalk";
 import { getProvider } from "../../lib/provider";
-import { providerNetworkFlags } from "../../lib/commonFlags";
+import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class AddressBalance extends Command {
   static description =

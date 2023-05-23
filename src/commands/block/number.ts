@@ -2,7 +2,7 @@ import { Command } from "@oclif/core";
 import { getProvider } from "../../lib/provider";
 import { Provider } from "ethers";
 import * as chalk from "chalk";
-import { providerNetworkFlags } from "../../lib/commonFlags";
+import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 
 export default class BlockNumber extends Command {
   static aliases: string[] = ["block-number"];
