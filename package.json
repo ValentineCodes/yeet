@@ -22,13 +22,15 @@
     "@oclif/plugin-plugins": "^2.4.7",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
-    "ethers": "^6.4.0"
+    "ethers": "^6.4.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@oclif/test": "^2.3.20",
     "@types/chai": "^4",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.18.31",
+    "@types/uuid": "^9.0.1",
     "chai": "^4",
     "eslint": "^7.32.0",
     "eslint-config-oclif": "^4",

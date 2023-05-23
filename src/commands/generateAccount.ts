@@ -2,6 +2,7 @@ import { Args, Command, Flags } from "@oclif/core";
 import { ethers } from "ethers";
 import * as chalk from "chalk";
 import * as fs from "fs";
+import { v4 as uuidv4 } from "uuid";
 
 interface NewWallet {
   mnemonic?: string;
@@ -53,21 +54,29 @@ export default class GenerateAccount extends Command {
         newWallet.mnemonic = wallet.mnemonic.phrase;
       }
 
-      fs.writeFile("new-wallet.json", JSON.stringify(newWallet), (error) => {
-        if (error) {
-          throw new Error(JSON.stringify(error));
-        } else {
-          console.log("Wallet created successfully✅");
-          console.log(
-            `Written to ${chalk.green.underline.bold("./new-wallet.json")}`
-          );
-          console.log(
-            chalk.yellow.bold(
-              "DO NOT REVEAL YOUR MNEMONIC AND PRIVATE KEY TO ANYONE... PROTECT YOUR FUNDS!!!"
-            )
-          );
+      const id = uuidv4();
+
+      fs.writeFile(
+        `new-wallet-${id}.json`,
+        JSON.stringify(newWallet),
+        (error) => {
+          if (error) {
+            throw new Error(JSON.stringify(error));
+          } else {
+            console.log("Wallet created successfully✅");
+            console.log(
+              `Written to ${chalk.green.underline.bold(
+                `./new-wallet-${id}.json`
+              )}`
+            );
+            console.log(
+              chalk.yellow.bold(
+                "DO NOT REVEAL YOUR MNEMONIC AND PRIVATE KEY TO ANYONE... PROTECT YOUR FUNDS!!!"
+              )
+            );
+          }
         }
-      });
+      );
     }
   }
 }
