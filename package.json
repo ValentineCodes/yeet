@@ -1,6 +1,6 @@
 {
-  "name": "@vc/yeet",
-  "version": "0.0.0",
+  "name": "yeet-cli",
+  "version": "1.0.0",
   "description": "A CLI for querying blockchain data and generating accounts",
   "author": "Valentine Orga",
   "bin": {
@@ -78,5 +78,8 @@
   "keywords": [
     "oclif"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  }
 }

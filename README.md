@@ -1,91 +1,57 @@
 # Table of contents
 
   <!-- toc -->
-
-- [Table of contents](#table-of-contents)
-- [Usage](#usage)
-- [Commands](#commands)
+* [Table of contents](#table-of-contents)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
   <!-- usage -->
-
 ```sh-session
-$ npm install -g @vc/yeet
+$ npm install -g yeet-cli
 $ yeet COMMAND
 running command...
 $ yeet (--version)
-@vc/yeet/0.0.0 darwin-x64 node-v18.11.0
+yeet-cli/1.0.0 darwin-x64 node-v18.11.0
 $ yeet --help [COMMAND]
 USAGE
   $ yeet COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
   <!-- commands -->
+* [`yeet address-balance ADDRESSORENS`](#yeet-address-balance-addressorens)
+* [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
+* [`yeet address address-ens ACCOUNT`](#yeet-address-address-ens-account)
+* [`yeet address balance ADDRESSORENS`](#yeet-address-balance-addressorens-1)
+* [`yeet address ens-address ENS`](#yeet-address-ens-address-ens)
+* [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
+* [`yeet block-number`](#yeet-block-number)
+* [`yeet block number`](#yeet-block-number-1)
+* [`yeet ens-address ENS`](#yeet-ens-address-ens)
+* [`yeet events ACCOUNT`](#yeet-events-account)
+* [`yeet generateAccount`](#yeet-generateaccount)
+* [`yeet help [COMMANDS]`](#yeet-help-commands)
+* [`yeet plugins`](#yeet-plugins)
+* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
+* [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
+* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
+* [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
+* [`yeet plugins update`](#yeet-plugins-update)
+* [`yeet transaction TXHASH`](#yeet-transaction-txhash)
+* [`yeet transactions ACCOUNT`](#yeet-transactions-account)
+* [`yeet tx TXHASH`](#yeet-tx-txhash)
+* [`yeet txs ACCOUNT`](#yeet-txs-account)
 
-- [`yeet address-ens ACCOUNT`](#yeet-address-address-ens-account)
-- [`yeet address-balance ADDRESSORENS`](#yeet-address-balance-addressorens)
-- [`yeet ens-address ENS`](#yeet-address-ens-address-ens)
-- [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
-- [`yeet block-number`](#yeet-block-number)
-- [`yeet events ACCOUNT`](#yeet-events-account)
-- [`yeet generateAccount`](#yeet-generateaccount)
-- [`yeet help [COMMANDS]`](#yeet-help-commands)
-- [`yeet plugins`](#yeet-plugins)
-- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
-- [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
-- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
-- [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
-- [`yeet plugins update`](#yeet-plugins-update)
-- [`yeet transaction TXHASH`](#yeet-transaction-txhash)
-- [`yeet transactions ACCOUNT`](#yeet-transactions-account)
-- [`yeet tx TXHASH`](#yeet-tx-txhash)
-- [`yeet txs ACCOUNT`](#yeet-txs-account)
-
-## `yeet address-ens ACCOUNT`
-
-gets ens of address
-
-```
-USAGE
-  $ yeet address-ens ACCOUNT [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
-    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
-
-ARGUMENTS
-  ACCOUNT  account address
-
-FLAGS
-  --arbitrum         provider network
-  --arbitrumGoerli   provider network
-  --goerli           provider network
-  --mainnet          provider network
-  --optimism         provider network
-  --optimismGoerli   provider network
-  --polygon          provider network
-  --polygonMumbai    provider network
-  --rpc_url=<value>  provider network rpc url
-  --sepolia          provider network
-
-DESCRIPTION
-  gets ens of address
-
-ALIASES
-  $ yeet address ens
-
-EXAMPLES
-  $ yeet address-ens <address>
-```
-
-## `yeet address-balance ADDRESSorENS`
+## `yeet address-balance ADDRESSORENS`
 
 gets address balance of address or ens. default network: localhost
 
@@ -120,8 +86,11 @@ FLAGS
 DESCRIPTION
   gets address balance of address or ens. default network: localhost
 
+ALIASES
+  $ yeet address-balance
+
 EXAMPLES
-  $ yeet address-balance <address>
+  $ yeet address-balance address-balance <address>
 ```
 
 ## `yeet address-ens ACCOUNT`
@@ -155,16 +124,92 @@ ALIASES
   $ yeet address-ens
 
 EXAMPLES
-  $ yeet address-ens <address>
+  $ yeet address-ens address-ens <address>
 ```
 
-## `yeet ens-address ENS`
+## `yeet address address-ens ACCOUNT`
+
+gets ens of address
+
+```
+USAGE
+  $ yeet address address-ens ACCOUNT [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  ACCOUNT  account address
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  gets ens of address
+
+ALIASES
+  $ yeet address-ens
+
+EXAMPLES
+  $ yeet address address-ens address-ens <address>
+```
+
+## `yeet address balance ADDRESSORENS`
+
+gets address balance of address or ens. default network: localhost
+
+```
+USAGE
+  $ yeet address balance ADDRESSORENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [--wei | --kwei | --mwei | --gwei |
+    --szabo | --finney | --ether]
+
+ARGUMENTS
+  ADDRESSORENS  account address or ens name
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --ether            eth denomination
+  --finney           eth denomination
+  --goerli           provider network
+  --gwei             eth denomination
+  --kwei             eth denomination
+  --mainnet          provider network
+  --mwei             eth denomination
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+  --szabo            eth denomination
+  --wei              eth denomination
+
+DESCRIPTION
+  gets address balance of address or ens. default network: localhost
+
+ALIASES
+  $ yeet address-balance
+
+EXAMPLES
+  $ yeet address balance address-balance <address>
+```
+
+## `yeet address ens-address ENS`
 
 gets address of ens
 
 ```
 USAGE
-  $ yeet ens-address ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum | --arbitrumGoerli
+  $ yeet address ens-address ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum | --arbitrumGoerli
     | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
 
 ARGUMENTS
@@ -189,7 +234,7 @@ ALIASES
   $ yeet ens-address
 
 EXAMPLES
-  $ yeet ens-address <ens>
+  $ yeet address ens-address ens-address <ens>
 ```
 
 ## `yeet block [BLOCK_NUMBER]`
@@ -225,11 +270,10 @@ DESCRIPTION
 EXAMPLES
   $ yeet block [block-number]
 
-  $ yeet block [block-number | block-hash] --network [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
-    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+  $ yeet block [block-number | block-hash] --network [network] --rpc_url [url]
 ```
 
-_See code: [dist/commands/block/index.ts](https://github.com/ValentineCodes/yeet/blob/v0.0.0/dist/commands/block/index.ts)_
+_See code: [dist/commands/block/index.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/block/index.ts)_
 
 ## `yeet block-number`
 
@@ -264,6 +308,73 @@ EXAMPLES
   $ yeet block-number --network [RPC URL]
 ```
 
+## `yeet block number`
+
+gets latest block number. default network: localhost
+
+```
+USAGE
+  $ yeet block number [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum | --arbitrumGoerli |
+    --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  gets latest block number. default network: localhost
+
+ALIASES
+  $ yeet block-number
+
+EXAMPLES
+  $ yeet block number [NETWORK NAME]
+
+  $ yeet block number --network [RPC URL]
+```
+
+## `yeet ens-address ENS`
+
+gets address of ens
+
+```
+USAGE
+  $ yeet ens-address ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum | --arbitrumGoerli
+    | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  ENS  ENS name
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  gets address of ens
+
+ALIASES
+  $ yeet ens-address
+
+EXAMPLES
+  $ yeet ens-address ens-address <ens>
+```
+
 ## `yeet events ACCOUNT`
 
 get past event logs of given address
@@ -293,7 +404,7 @@ EXAMPLES
   $ yeet events <account> --from,-f=[block_number] --to,-t=[block_number] --page,-p=[page] --offset,-o=[offset] --network,-n=[network_name] --rpc_url=[url]
 ```
 
-_See code: [dist/commands/events/index.ts](https://github.com/ValentineCodes/yeet/blob/v0.0.0/dist/commands/events/index.ts)_
+_See code: [dist/commands/events/index.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/events/index.ts)_
 
 ## `yeet generateAccount`
 
@@ -310,73 +421,10 @@ DESCRIPTION
   generates a new random account
 
 EXAMPLES
-  $ yeet generateAccount
+  $ yeet generateAccount generateAccount
 ```
 
-_See code: [dist/commands/transactions.ts](https://github.com/ValentineCodes/yeet/blob/v0.0.0/dist/commands/transactions.ts)_
-
-## `yeet tx TXHASH`
-
-gets transaction object from transaction hash
-
-```
-USAGE
-  $ yeet tx TXHASH [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
-    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
-
-ARGUMENTS
-  TXHASH  transaction hash
-
-FLAGS
-  --arbitrum         provider network
-  --arbitrumGoerli   provider network
-  --goerli           provider network
-  --mainnet          provider network
-  --optimism         provider network
-  --optimismGoerli   provider network
-  --polygon          provider network
-  --polygonMumbai    provider network
-  --rpc_url=<value>  provider network rpc url
-  --sepolia          provider network
-
-DESCRIPTION
-  gets transaction object from transaction hash
-
-ALIASES
-  $ yeet tx
-
-EXAMPLES
-  $ yeet tx <txHash>
-```
-
-## `yeet txs ACCOUNT`
-
-lists all past transactions of account
-
-```
-USAGE
-  $ yeet txs ACCOUNT [--mainnet | --goerli | --sepolia] [-e]
-
-ARGUMENTS
-  ACCOUNT  account address
-
-FLAGS
-  -e, --export  exports transactions to 'transactions.json' file in current directory
-  --goerli      etherscan supported network
-  --mainnet     etherscan supported network
-  --sepolia     etherscan supported network
-
-DESCRIPTION
-  lists all past transactions of account
-
-ALIASES
-  $ yeet txs
-
-EXAMPLES
-  $ yeet txs txs <address|ens>
-```
-
-_See code: [dist/commands/generateAccount.ts](https://github.com/ValentineCodes/yeet/blob/v0.0.0/dist/commands/generateAccount.ts)_
+_See code: [dist/commands/generateAccount.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/generateAccount.ts)_
 
 ## `yeet help [COMMANDS]`
 
@@ -449,7 +497,7 @@ ALIASES
   $ yeet plugins add
 
 EXAMPLES
-  $ yeet plugins:install myplugin
+  $ yeet plugins:install myplugin 
 
   $ yeet plugins:install https://github.com/someuser/someplugin
 
@@ -512,7 +560,7 @@ ALIASES
   $ yeet plugins add
 
 EXAMPLES
-  $ yeet plugins:install myplugin
+  $ yeet plugins:install myplugin 
 
   $ yeet plugins:install https://github.com/someuser/someplugin
 
@@ -662,10 +710,10 @@ ALIASES
   $ yeet tx
 
 EXAMPLES
-  $ yeet tx <txHash>
+  $ yeet transaction tx <txHash>
 ```
 
-_See code: [dist/commands/transaction.ts](https://github.com/ValentineCodes/yeet/blob/v0.0.0/dist/commands/transaction.ts)_
+_See code: [dist/commands/transaction.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/transaction.ts)_
 
 ## `yeet transactions ACCOUNT`
 
@@ -691,7 +739,69 @@ ALIASES
   $ yeet txs
 
 EXAMPLES
-  $ yeet transactions <address|ens>
+  $ yeet transactions txs <address|ens>
 ```
 
+_See code: [dist/commands/transactions.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/transactions.ts)_
+
+## `yeet tx TXHASH`
+
+gets transaction object from transaction hash
+
+```
+USAGE
+  $ yeet tx TXHASH [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  TXHASH  transaction hash
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  gets transaction object from transaction hash
+
+ALIASES
+  $ yeet tx
+
+EXAMPLES
+  $ yeet tx tx <txHash>
+```
+
+## `yeet txs ACCOUNT`
+
+lists all past transactions of account
+
+```
+USAGE
+  $ yeet txs ACCOUNT [--mainnet | --goerli | --sepolia] [-e]
+
+ARGUMENTS
+  ACCOUNT  account address
+
+FLAGS
+  -e, --export  exports transactions to 'transactions.json' file in current directory
+  --goerli      etherscan supported network
+  --mainnet     etherscan supported network
+  --sepolia     etherscan supported network
+
+DESCRIPTION
+  lists all past transactions of account
+
+ALIASES
+  $ yeet txs
+
+EXAMPLES
+  $ yeet txs txs <address|ens>
+```
 <!-- commandsstop -->
