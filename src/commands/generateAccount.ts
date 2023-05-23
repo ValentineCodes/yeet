@@ -17,7 +17,6 @@ export default class GenerateAccount extends Command {
     "no-export": Flags.boolean({
       description:
         "disables export for mnemonic and private key to 'new-wallet.json' file in current directory",
-      default: false,
     }),
   };
 
