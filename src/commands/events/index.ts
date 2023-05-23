@@ -2,6 +2,7 @@ import { Args, Command, Flags } from "@oclif/core";
 import { Provider, ethers } from "ethers";
 import axios from "axios";
 import * as chalk from "chalk";
+import * as fs from "fs";
 import {
   getProviderWithURL,
   getProviderWithName,
@@ -30,6 +31,10 @@ export default class EventsIndex extends Command {
       description: "network to read from",
       options: ["mainnet", "goerli", "sepolia"],
       default: "mainnet",
+    }),
+    export: Flags.boolean({
+      char: "e",
+      description: "exports events to 'events.json' file in current directory",
     }),
   };
 
@@ -82,6 +87,21 @@ export default class EventsIndex extends Command {
     );
 
     this.log(chalk.hex("#9F2B68")(flags.network.toUpperCase()));
-    console.log(events.result);
+
+    if (flags.export) {
+      fs.writeFile("events.json", JSON.stringify(events.result), (error) => {
+        if (error) {
+          console.log(events.result);
+          throw new Error(JSON.stringify(error));
+        } else {
+          console.log("File written successfully✅");
+          console.log(
+            `Written to ${chalk.green.underline.bold("./events.json")}`
+          );
+        }
+      });
+    } else {
+      console.log(events.result);
+    }
   }
 }

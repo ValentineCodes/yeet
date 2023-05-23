@@ -2,8 +2,10 @@ import { Args, Command, Flags } from "@oclif/core";
 import { Provider, ethers } from "ethers";
 import { Providers, getProviderWithName } from "../lib/provider";
 import axios from "axios";
+import * as chalk from "chalk";
+import * as fs from "fs";
+
 import { ETHERSCAN_KEY } from "../utils/constants";
-import chalk = require("chalk");
 
 export default class Transactions extends Command {
   static aliases: string[] = ["txs"];
@@ -18,6 +20,11 @@ export default class Transactions extends Command {
       description: "network to read from",
       options: ["mainnet", "goerli", "sepolia"],
       default: "mainnet",
+    }),
+    export: Flags.boolean({
+      char: "e",
+      description:
+        "exports transactions to 'transactions.json' file in current directory",
     }),
   };
 
@@ -42,27 +49,43 @@ export default class Transactions extends Command {
       throw new Error("Invalid address or ens");
     }
 
-    let transactions: any;
-
+    let domain: string;
     switch (flags.network) {
-      case "mainnet":
-        transactions = await axios.get(
-          `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&sort=asc&apikey=${ETHERSCAN_KEY}`
-        );
-        break;
       case "goerli":
-        transactions = await axios.get(
-          `https://api-goerli.etherscan.io/api?module=account&action=txlist&address=${address}&sort=asc&apikey=${ETHERSCAN_KEY}`
-        );
+        domain = "https://api-goerli.etherscan.io";
         break;
       case "sepolia":
-        transactions = await axios.get(
-          `https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&sort=asc&apikey=${ETHERSCAN_KEY}`
-        );
+        domain = "https://api-sepolia.etherscan.io";
+        break;
+      default:
+        domain = "https://api.etherscan.io";
         break;
     }
 
+    const { data: transactions } = await axios.get(
+      `${domain}/api?module=account&action=txlist&address=${address}&sort=asc&apikey=${ETHERSCAN_KEY}`
+    );
+
     this.log(chalk.hex("#9F2B68")(flags.network));
-    console.log(transactions.data.result);
+
+    if (flags.export) {
+      fs.writeFile(
+        "transactions.json",
+        JSON.stringify(transactions.result),
+        (error) => {
+          if (error) {
+            console.log(transactions.result);
+            throw new Error(JSON.stringify(error));
+          } else {
+            console.log("File written successfully✅");
+            console.log(
+              `Written to ${chalk.green.underline.bold("./transactions.json")}`
+            );
+          }
+        }
+      );
+    } else {
+      console.log(transactions.result);
+    }
   }
 }
