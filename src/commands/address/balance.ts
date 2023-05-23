@@ -4,6 +4,8 @@ import { BigNumberish, Provider, ethers } from "ethers";
 import * as chalk from "chalk";
 import { getProvider } from "../../lib/provider";
 import { providerNetworkFlags } from "../../lib/flags/networkFlags";
+import { ethUnitFlags } from "../../lib/flags/cryptoUnitFlags";
+import { formatUnits } from "../../lib/cryptoUnitConverter";
 
 export default class AddressBalance extends Command {
   static description =
@@ -15,11 +17,7 @@ export default class AddressBalance extends Command {
 
   static flags = {
     ...providerNetworkFlags,
-    unit: Flags.string({
-      description: "conversion unit",
-      options: units,
-      default: "ether",
-    }),
+    ...ethUnitFlags,
   };
 
   static args = {
@@ -35,9 +33,6 @@ export default class AddressBalance extends Command {
     let provider: Provider = getProvider(flags);
 
     const balance: BigNumberish = await provider.getBalance(args.addressOrens);
-    console.log(
-      chalk.green(ethers.formatUnits(balance, flags.unit)),
-      flags.unit
-    );
+    console.log(chalk.green(formatUnits(balance, flags)));
   }
 }
