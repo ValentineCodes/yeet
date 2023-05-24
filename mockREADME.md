@@ -30,25 +30,200 @@ USAGE
 
   <!-- commands -->
 
-- [`yeet account-balance ADDRESS|ENS`](#yeet-account-balance-ADDRESS|ENS)
-- [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
-- [`yeet ens-address ENS`](#yeet-ens-address-ens)
-- [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
-- [`yeet block-number`](#yeet-block-number)
-- [`yeet events ACCOUNT`](#yeet-events-account)
-- [`yeet generateAccount`](#yeet-generateaccount)
-- [`yeet help [COMMANDS]`](#yeet-help-commands)
-- [`yeet plugins`](#yeet-plugins)
-- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
-- [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
-- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
-- [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
-- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
-- [`yeet plugins update`](#yeet-plugins-update)
-- [`yeet tx TXHASH`](#yeet-tx-txhash)
-- [`yeet txs ACCOUNT`](#yeet-txs-account)
+- [`yeet abi NAME`](#yeet-abi-name)
+- [`yeet abi-add NAME ABIPATH`](#yeet-abi-add-name-abipath)
+- [`yeet abi-events NAME`](#yeet-abi-events-name)
+- [`yeet abi-list`](#yeet-abi-list)
+- [`yeet abi-methods NAME`](#yeet-abi-methods-name)
+- [`yeet abi-remove NAME`](#yeet-abi-remove-name)
+- [`yeet abi-total`](#yeet-abi-total)
+- [`yeet abi-update NAME ABIPATH`](#yeet-abi-update-name-abipath)
+
+* [`yeet account-balance ADDRESS|ENS`](#yeet-account-balance-ADDRESS|ENS)
+* [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
+* [`yeet ens-address ENS`](#yeet-ens-address-ens)
+* [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
+* [`yeet block-number`](#yeet-block-number)
+* [`yeet contract-interact ADDRESS ABI`](#yeet-contract-interact-address-abi)
+* [`yeet convert UNIT`](#yeet-convert-unit)
+* [`yeet events ACCOUNT`](#yeet-events-account)
+* [`yeet events-watch ADDRESS ABI EVENT`](#yeet-events-watch-address-abi-event)
+* [`yeet generateAccount`](#yeet-generateaccount)
+* [`yeet help [COMMANDS]`](#yeet-help-commands)
+* [`yeet plugins`](#yeet-plugins)
+* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
+* [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
+* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
+* [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
+* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
+* [`yeet plugins update`](#yeet-plugins-update)
+* [`yeet tx TXHASH`](#yeet-tx-txhash)
+* [`yeet txs ACCOUNT`](#yeet-txs-account)
+
+## `yeet abi NAME`
+
+gets abi from storage
+
+```
+USAGE
+  $ yeet abi NAME
+
+ARGUMENTS
+  NAME  abi name in storage
+
+DESCRIPTION
+  gets abi from storage
+
+EXAMPLES
+  $ yeet abi erc20ABI
+```
+
+_See code: [dist/commands/abi/index.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/abi/index.ts)_
+
+## `yeet abi-add NAME ABIPATH`
+
+stores contract abi
+
+```
+USAGE
+  $ yeet abi-add NAME ABIPATH
+
+ARGUMENTS
+  NAME     abi name in storage
+  ABIPATH  path to abi
+
+DESCRIPTION
+  stores contract abi
+
+ALIASES
+  $ yeet abi-add
+
+EXAMPLES
+  $ yeet abi-add erc20ABI ./erc20ABI.json
+```
+
+## `yeet abi-events NAME`
+
+lists all events of abi
+
+```
+USAGE
+  $ yeet abi-events NAME
+
+ARGUMENTS
+  NAME  abi name in storage
+
+DESCRIPTION
+  lists all events of abi
+
+ALIASES
+  $ yeet abi-events
+
+EXAMPLES
+  $ yeet abi-events erc20ABI
+```
+
+## `yeet abi-list`
+
+lists all stored abi names
+
+```
+USAGE
+  $ yeet abi-list
+
+DESCRIPTION
+  lists all stored abi names
+
+ALIASES
+  $ yeet abi-list
+
+EXAMPLES
+  $ yeet abi-list
+```
+
+## `yeet abi-methods NAME`
+
+lists all methods of abi
+
+```
+USAGE
+  $ yeet abi-methods NAME
+
+ARGUMENTS
+  NAME  abi name in storage
+
+DESCRIPTION
+  lists all methods of abi
+
+ALIASES
+  $ yeet abi-methods
+
+EXAMPLES
+  $ yeet abi-methods erc20ABI
+```
+
+## `yeet abi-remove NAME`
+
+removes contract abi
+
+```
+USAGE
+  $ yeet abi-remove NAME
+
+ARGUMENTS
+  NAME  abi name in storage
+
+DESCRIPTION
+  removes contract abi
+
+ALIASES
+  $ yeet abi-remove
+
+EXAMPLES
+  $ yeet abi-remove erc20ABI
+```
+
+## `yeet abi-total`
+
+gets total contract abis stored
+
+```
+USAGE
+  $ yeet abi-total
+
+DESCRIPTION
+  gets total contract abis stored
+
+ALIASES
+  $ yeet abi-total
+
+EXAMPLES
+  $ yeet abi-total
+```
+
+## `yeet abi-update NAME ABIPATH`
+
+updates contract abi
+
+```
+USAGE
+  $ yeet abi-update NAME ABIPATH
+
+ARGUMENTS
+  NAME     abi name to update
+  ABIPATH  path to abi
+
+DESCRIPTION
+  updates contract abi
+
+ALIASES
+  $ yeet abi-update
+
+EXAMPLES
+  $ yeet abi-update erc20ABI ./erc20ABI.json
+```
 
 ## `yeet account-balance ADDRESS|ENS`
 
@@ -56,12 +231,12 @@ gets address balance of address or ens. default network: localhost
 
 ```
 USAGE
-  $ yeet account-balance ADDRESS|ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+  $ yeet account-balance ADDRESSORENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
     --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [--wei | --kwei | --mwei | --gwei |
     --szabo | --finney | --ether]
 
 ARGUMENTS
-  ADDRESS|ENS  account address or ens name
+  ADDRESSORENS  account address or ens name
 
 FLAGS
   --arbitrum         provider network
@@ -89,9 +264,11 @@ ALIASES
   $ yeet account-balance
 
 EXAMPLES
-  $ yeet account-balance <address|ens> --mainnet
-  $ yeet account-balance <address|ens> --rpc_url=[PROVIDER_URL]
-  $ yeet account-balance <address|ens> --mainnet --wei
+  $ yeet account-balance 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --mainnet
+
+  $ yeet account-balance valentineorga.eth --rpc_url=[PROVIDER_URL]
+
+  $ yeet account-balance 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --mainnet --wei
 ```
 
 ## `yeet address-ens ACCOUNT`
@@ -125,8 +302,9 @@ ALIASES
   $ yeet address-ens
 
 EXAMPLES
-  $ yeet address-ens <address> --mainnet
-  $ yeet address-ens <address> --rpc_url=[PROVIDER_URL]
+  $ yeet address-ens 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --mainnet
+
+  $ yeet address-ens 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --rpc_url=[PROVIDER_URL]
 ```
 
 ## `yeet ens-address ENS`
@@ -160,8 +338,9 @@ ALIASES
   $ yeet ens-address
 
 EXAMPLES
-  $ yeet ens-address <ens> --mainnet
-  $ yeet ens-address <ens> --rpc_url=[PROVIDER_URL]
+  $ yeet ens-address valentineorga.eth --mainnet
+
+  $ yeet ens-address valentineorga.eth --rpc_url=[PROVIDER_URL]
 ```
 
 ## `yeet block [BLOCK_NUMBER]`
@@ -195,8 +374,9 @@ DESCRIPTION
   gets block object from block number or hash. default network: Localhost
 
 EXAMPLES
-  $ yeet block [block-number | block-hash] --mainnet
-  $ yeet block [block-number | block-hash] --rpc_url=[PROVIDER_URL]
+  $ yeet block 20 --mainnet
+
+  $ yeet block 0x720c47720a39b4b2f04ca82420b8272910a7c397710fcb8ed8337f5a007e39ec --rpc_url=[PROVIDER_URL]
 ```
 
 _See code: [dist/commands/block/index.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/block/index.ts)_
@@ -233,6 +413,80 @@ EXAMPLES
   $ yeet block-number --rpc_url=[PROVIDER_URL]
 ```
 
+## `yeet contract-interact ADDRESS ABI`
+
+exposes a `contract` instance in a REPL environment for making contract calls
+
+```
+USAGE
+  $ yeet contract-interact ADDRESS ABI [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [-s <value>]
+
+ARGUMENTS
+  ADDRESS  contract address
+  ABI      abi name saved using `yeet abi-add`
+
+FLAGS
+  -s, --signer=<value>  private key of transaction signer
+  --arbitrum            provider network
+  --arbitrumGoerli      provider network
+  --goerli              provider network
+  --mainnet             provider network
+  --optimism            provider network
+  --optimismGoerli      provider network
+  --polygon             provider network
+  --polygonMumbai       provider network
+  --rpc_url=<value>     provider network rpc url
+  --sepolia             provider network
+
+DESCRIPTION
+  exposes a `contract` instance in a REPL environment for making contract calls
+
+ALIASES
+  $ yeet contract-interact
+
+EXAMPLES
+  $ yeet contract-interact 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet
+
+  > await contract.name()
+
+  > await contract.getterFunction()
+
+  $ yeet contract-interact 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet
+
+  > await contract.mint()
+
+  > await contract.setterFunction({value: '10000000000000'})
+
+FLAG DESCRIPTIONS
+  -s, --signer=<value>  private key of transaction signer
+
+    if specified, each command will be executed as a transaction
+```
+
+## `yeet convert UNIT`
+
+convert from eth to wei or vice versa
+
+```
+USAGE
+  $ yeet convert UNIT [--wei]
+
+ARGUMENTS
+  UNIT  number to convert
+
+FLAGS
+  --wei  eth denomination
+
+DESCRIPTION
+  convert from eth to wei or vice versa
+
+EXAMPLES
+  $ yeet convert 1000000000000000000
+
+  $ yeet convert 1 --wei
+```
+
 ## `yeet events ACCOUNT`
 
 get past event logs of given address
@@ -259,9 +513,47 @@ DESCRIPTION
   get past event logs of given address
 
 EXAMPLES
-  $ yeet events <account> --mainnet"
-  $ yeet events <account> --sepolia --export,-e"
-  $ yeet events <account> --goerli --from,-f=[block-number] --to,-t=[block-number] --page,-p=[page] --offset,-o=[offset]
+  $ yeet events yourens.eth --mainnet
+
+  $ yeet events 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --sepolia --export,-e
+
+  $ yeet events 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --goerli --from,-f=[block-number] --to,-t=[block-number] --page,-p=[page] --offset,-o=[offset]
+```
+
+## `yeet events-watch ADDRESS ABI EVENT`
+
+emits new events from contract
+
+```
+USAGE
+  $ yeet events-watch ADDRESS ABI EVENT [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  ADDRESS  contract address
+  ABI      abi name saved using `yeet abi-add`
+  EVENT    event to watch
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  emits new events from contract
+
+ALIASES
+  $ yeet events-watch
+
+EXAMPLES
+  $ yeet events-watch 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI Transfer --mainnet
 ```
 
 _See code: [dist/commands/events/index.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/events/index.ts)_
@@ -282,6 +574,7 @@ DESCRIPTION
 
 EXAMPLES
   $ yeet generateAccount
+
   $ yeet generateAccount --no-export
 ```
 
@@ -318,8 +611,9 @@ ALIASES
   $ yeet tx
 
 EXAMPLES
-  $ yeet tx <txHash> --mainnet
-  $ yeet tx <txHash> --rpc_url=[PROVIDER_URL]
+  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --mainnet
+
+  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --rpc_url=[PROVIDER_URL]
 ```
 
 ## `yeet txs ACCOUNT`
@@ -346,9 +640,11 @@ ALIASES
   $ yeet txs
 
 EXAMPLES
-  $ yeet txs <address|ens> --mainnet
-  $ yeet txs <address|ens> --rpc_url=[PROVIDER_URL]
-  $ yeet txs <address|ens> --sepolia --export,-e
+  $ yeet txs yourens.eth --mainnet
+
+  $ yeet txs 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --rpc_url=[PROVIDER_URL]
+
+  $ yeet txs myens.eth --sepolia --export,-e
 ```
 
 ## `yeet help [COMMANDS]`
