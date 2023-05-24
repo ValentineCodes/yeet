@@ -26,6 +26,10 @@ export default class AbiUpdate extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(AbiUpdate);
 
+    if (!store.has(args.name)) {
+      console.log(`${chalk.bold.underline(args.name)} does not exist!`);
+      return;
+    }
     const abi = fs.readFileSync(args.abiPath, { encoding: "utf8" });
 
     store.set(args.name, abi);

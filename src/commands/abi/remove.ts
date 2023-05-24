@@ -21,6 +21,10 @@ export default class AbiRemove extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(AbiRemove);
 
+    if (!store.has(args.name)) {
+      console.log(`${chalk.bold.underline(args.name)} does not exist!`);
+      return;
+    }
     store.delete(args.name);
     console.log(`${chalk.bold.underline(args.name)} deleted successfully✅`);
   }

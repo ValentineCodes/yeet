@@ -26,21 +26,22 @@ export default class AbiMethods extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(AbiMethods);
 
-    if (store.has(args.name)) {
-      const abi: any[] = JSON.parse(store.get(args.name) as string);
-      const methods = abi.filter((el) => el.type === "function");
-      methods.forEach((method) => {
-        if (method.inputs) {
-          const inputParams = method.inputs
-            .map((input: MethodInput) => `${input.type} ${input.name}`)
-            .join(", ");
-          console.log(`- ${method.name}(${inputParams})`);
-        } else {
-          console.log(`- ${method.name}()`);
-        }
-      });
-    } else {
+    if (!store.has(args.name)) {
       console.log(`${chalk.bold.underline(args.name)} does not exist!`);
+      return;
     }
+
+    const abi: any[] = JSON.parse(store.get(args.name) as string);
+    const methods = abi.filter((el) => el.type === "function");
+    methods.forEach((method) => {
+      if (method.inputs) {
+        const inputParams = method.inputs
+          .map((input: MethodInput) => `${input.type} ${input.name}`)
+          .join(", ");
+        console.log(`- ${method.name}(${inputParams})`);
+      } else {
+        console.log(`- ${method.name}()`);
+      }
+    });
   }
 }

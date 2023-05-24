@@ -26,21 +26,22 @@ export default class AbiEvents extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(AbiEvents);
 
-    if (store.has(args.name)) {
-      const abi: any[] = JSON.parse(store.get(args.name) as string);
-      const events = abi.filter((el) => el.type === "event");
-      events.forEach((method) => {
-        if (method.inputs) {
-          const inputParams = method.inputs
-            .map((input: EventInput) => `${input.type} ${input.name}`)
-            .join(", ");
-          console.log(`- ${method.name}(${inputParams})`);
-        } else {
-          console.log(`- ${method.name}()`);
-        }
-      });
-    } else {
+    if (!store.has(args.name)) {
       console.log(`${chalk.bold.underline(args.name)} does not exist!`);
+      return;
     }
+
+    const abi: any[] = JSON.parse(store.get(args.name) as string);
+    const events = abi.filter((el) => el.type === "event");
+    events.forEach((method) => {
+      if (method.inputs) {
+        const inputParams = method.inputs
+          .map((input: EventInput) => `${input.type} ${input.name}`)
+          .join(", ");
+        console.log(`- ${method.name}(${inputParams})`);
+      } else {
+        console.log(`- ${method.name}()`);
+      }
+    });
   }
 }

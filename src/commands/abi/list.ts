@@ -15,6 +15,11 @@ export default class AbiList extends Command {
     console.log(`Total: ${chalk.bold.underline(store.size)}`);
     const _store = store.store;
     const abis = Object.keys(_store);
+
+    if (abis.length === 0) {
+      console.log("No available ABIs");
+      return;
+    }
     abis.forEach((abi) => {
       console.log(`- ${abi}`);
     });

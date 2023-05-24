@@ -20,10 +20,11 @@ export default class AbiIndex extends Command {
   public async run(): Promise<void> {
     const { args } = await this.parse(AbiIndex);
 
-    if (store.has(args.name)) {
-      console.log(store.get(args.name));
-    } else {
+    if (!store.has(args.name)) {
       console.log(`${chalk.bold.underline(args.name)} does not exist!`);
+      return;
     }
+
+    console.log(store.get(args.name));
   }
 }
