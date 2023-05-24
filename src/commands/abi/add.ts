@@ -14,7 +14,7 @@ export default class AbiAdd extends Command {
 
   static args = {
     name: Args.string({
-      description: "abi unique name in storage",
+      description: "abi name in storage",
       required: true,
     }),
     abiPath: Args.string({
