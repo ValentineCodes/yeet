@@ -10,8 +10,8 @@ export default class AddressIndex extends Command {
   static description = "gets address of ens";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <ens> --mainnet",
-    "<%= config.bin %> <%= command.id %> <ens> --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> valentineorga.eth --mainnet",
+    "<%= config.bin %> <%= command.id %> valentineorga.eth --rpc_url=[PROVIDER_URL]",
   ];
 
   static flags = {

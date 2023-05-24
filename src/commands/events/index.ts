@@ -12,9 +12,9 @@ export default class EventsIndex extends Command {
   static description = "get past event logs of given address";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <account> --mainnet",
-    "<%= config.bin %> <%= command.id %> <account> --sepolia --export,-e",
-    "<%= config.bin %> <%= command.id %> <account> --goerli --from,-f=[block-number] --to,-t=[block-number] --page,-p=[page] --offset,-o=[offset]",
+    "<%= config.bin %> <%= command.id %> yourens.eth --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --sepolia --export,-e",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --goerli --from,-f=[block-number] --to,-t=[block-number] --page,-p=[page] --offset,-o=[offset]",
   ];
 
   static flags = {

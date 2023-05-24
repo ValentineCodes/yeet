@@ -14,10 +14,10 @@ export default class ContractCall extends Command {
     "exposes a `contract` instance in a REPL environment for making contract calls";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <address> <abi> --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet",
     "> await contract.name()",
     "> await contract.getterFunction()",
-    "<%= config.bin %> <%= command.id %> <address> <abi> --signer=[PRIVATE_KEY] --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet",
     "> await contract.mint()",
     "> await contract.setterFunction({value: '10000000000000'})",
   ];

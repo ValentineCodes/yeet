@@ -14,7 +14,7 @@ export default class AbiMethods extends Command {
 
   static description = "lists all methods of abi";
 
-  static examples = ["<%= config.bin %> <%= command.id %> <name>"];
+  static examples = ["<%= config.bin %> <%= command.id %> erc20ABI"];
 
   static args = {
     name: Args.string({

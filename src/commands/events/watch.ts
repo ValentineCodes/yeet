@@ -14,7 +14,7 @@ export default class EventsWatch extends Command {
   static description = "emits new events from contract";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <address> <abi> <event> --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI Transfer --mainnet",
   ];
 
   static flags = {

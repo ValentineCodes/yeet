@@ -10,8 +10,8 @@ export default class AddressAddressEns extends Command {
   static description = "gets ens of address";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <address> --mainnet",
-    "<%= config.bin %> <%= command.id %> <address> --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B70B678554c52C266a9D49B6 --rpc_url=[PROVIDER_URL]",
   ];
 
   static flags = {

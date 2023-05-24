@@ -8,8 +8,8 @@ export default class Transaction extends Command {
   static description = "gets transaction object from transaction hash";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <txHash> --mainnet",
-    "<%= config.bin %> <%= command.id %> <txHash> --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --mainnet",
+    "<%= config.bin %> <%= command.id %> 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --rpc_url=[PROVIDER_URL]",
   ];
 
   static flags = {

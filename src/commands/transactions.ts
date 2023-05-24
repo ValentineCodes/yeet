@@ -15,9 +15,9 @@ export default class Transactions extends Command {
   static description = "lists all past transactions of account";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> <address|ens> --mainnet",
-    "<%= config.bin %> <%= command.id %> <address|ens> --rpc_url=[PROVIDER_URL]",
-    "<%= config.bin %> <%= command.id %> <address|ens> --sepolia --export,-e",
+    "<%= config.bin %> <%= command.id %> yourens.eth --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> myens.eth --sepolia --export,-e",
   ];
 
   static flags = {

@@ -8,7 +8,7 @@ const store = new Conf();
 export default class AbiIndex extends Command {
   static description = "gets abi from storage";
 
-  static examples = ["<%= config.bin %> <%= command.id %> <name>"];
+  static examples = ["<%= config.bin %> <%= command.id %> erc20ABI"];
 
   static args = {
     name: Args.string({

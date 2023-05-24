@@ -10,7 +10,9 @@ export default class AbiUpdate extends Command {
 
   static description = "updates contract abi";
 
-  static examples = ["<%= config.bin %> <%= command.id %> <name> <abiPath>"];
+  static examples = [
+    "<%= config.bin %> <%= command.id %> erc20ABI ./erc20ABI.json",
+  ];
 
   static args = {
     name: Args.string({

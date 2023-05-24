@@ -7,8 +7,8 @@ export default class BlockIndex extends Command {
     "gets block object from block number or hash. default network: Localhost";
 
   static examples = [
-    "<%= config.bin %> <%= command.id %> [block-number | block-hash] --mainnet",
-    "<%= config.bin %> <%= command.id %> [block-number | block-hash] --rpc_url=[PROVIDER_URL]",
+    "<%= config.bin %> <%= command.id %> 20 --mainnet",
+    "<%= config.bin %> <%= command.id %> 0x720c47720a39b4b2f04ca82420b8272910a7c397710fcb8ed8337f5a007e39ec --rpc_url=[PROVIDER_URL]",
   ];
 
   static flags = {

@@ -9,7 +9,7 @@ export default class AbiRemove extends Command {
 
   static description = "removes contract abi";
 
-  static examples = ["<%= config.bin %> <%= command.id %> <name>"];
+  static examples = ["<%= config.bin %> <%= command.id %> erc20ABI"];
 
   static args = {
     name: Args.string({
