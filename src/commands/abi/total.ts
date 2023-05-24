@@ -12,6 +12,6 @@ export default class AbiTotal extends Command {
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
   public async run(): Promise<void> {
-    console.log(`${chalk.bold.underline(store.size)} ABIs in storage`);
+    console.log(`${chalk.bold.underline(store.size)} ABIs`);
   }
 }
