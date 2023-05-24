@@ -14,6 +14,9 @@ export default class AbiList extends Command {
   public async run(): Promise<void> {
     console.log(`Total: ${chalk.bold.underline(store.size)}`);
     const _store = store.store;
-    console.log(Object.keys(_store));
+    const abis = Object.keys(_store);
+    abis.forEach((abi) => {
+      console.log(`- ${abi}`);
+    });
   }
 }
