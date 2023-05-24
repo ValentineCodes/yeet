@@ -1,5 +1,5 @@
-import { Args, Command } from "@oclif/core";
-import { InterfaceAbi, Provider, ethers } from "ethers";
+import { Args, Command, Flags } from "@oclif/core";
+import { InterfaceAbi, JsonRpcProvider, Provider, ethers } from "ethers";
 import Conf from "conf";
 import * as repl from "repl";
 import * as chalk from "chalk";
@@ -9,7 +9,7 @@ import { getProvider } from "../../lib/provider";
 
 const store = new Conf();
 export default class ContractCall extends Command {
-  static aliases: string[] = ["contract-call"];
+  static aliases: string[] = ["contract-interact"];
   static description =
     "exposes a `contract` instance in a REPL environment for making contract calls";
 
@@ -17,10 +17,19 @@ export default class ContractCall extends Command {
     "<%= config.bin %> <%= command.id %> <address> <abi> --mainnet",
     "> await contract.name()",
     "> await contract.getterFunction()",
+    "<%= config.bin %> <%= command.id %> <address> <abi> --signer=[PRIVATE_KEY] --mainnet",
+    "> await contract.mint()",
+    "> await contract.setterFunction({value: '10000000000000'})",
   ];
 
   static flags = {
     ...providerNetworkFlags,
+    signer: Flags.string({
+      char: "s",
+      summary: "private key of transaction signer",
+      description:
+        "if specified, each command will be executed as a transaction",
+    }),
   };
 
   static args = {
@@ -34,8 +43,6 @@ export default class ContractCall extends Command {
   public async run(): Promise<void> {
     const { args, flags } = await this.parse(ContractCall);
 
-    let provider: Provider = getProvider(flags);
-
     if (!ethers.isAddress(args.address)) {
       console.log("Invalid contract address");
       return;
@@ -44,8 +51,19 @@ export default class ContractCall extends Command {
       console.log(`${chalk.bold.underline(args.abi)} does not exist!`);
       return;
     }
+
     const abi = store.get(args.abi) as InterfaceAbi;
-    const contract = new ethers.Contract(args.address, abi, provider);
+    const provider = getProvider(flags);
+
+    let contract;
+
+    if (flags.signer) {
+      const wallet = new ethers.Wallet(flags.signer).connect(provider);
+
+      contract = new ethers.Contract(args.address, abi, wallet);
+    } else {
+      contract = new ethers.Contract(args.address, abi, provider);
+    }
 
     repl.start().context.contract = contract;
   }
