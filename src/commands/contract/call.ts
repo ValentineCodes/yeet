@@ -10,7 +10,8 @@ import { getProvider } from "../../lib/provider";
 const store = new Conf();
 export default class ContractCall extends Command {
   static aliases: string[] = ["contract-call"];
-  static description = "calls methods of specified contract";
+  static description =
+    "exposes a `contract` instance in a REPL environment for making contract calls";
 
   static examples = [
     "<%= config.bin %> <%= command.id %> <address> <abi> --mainnet",
