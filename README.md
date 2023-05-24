@@ -2,7 +2,7 @@
 
 A CLI for querying blockchain data, interacting with smart contracts and generating accounts
 
-[Video Demo](https://youtu.be/sssiNi6bYvQ)
+[Video Demo](https://youtu.be/2xRcDvSwDOk)
 
 # Table of contents
 
