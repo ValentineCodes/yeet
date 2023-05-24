@@ -44,7 +44,7 @@ USAGE
 * [`yeet ens-address ENS`](#yeet-ens-address-ens)
 * [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
 * [`yeet block-number`](#yeet-block-number)
-* [`yeet contract-interact ADDRESS ABI`](#yeet-contract-interact-address-abi)
+* [`yeet contract ADDRESS ABI`](#yeet-contract-address-abi)
 * [`yeet convert UNIT`](#yeet-convert-unit)
 * [`yeet events ACCOUNT`](#yeet-events-account)
 * [`yeet events-watch ADDRESS ABI EVENT`](#yeet-events-watch-address-abi-event)
@@ -413,13 +413,13 @@ EXAMPLES
   $ yeet block-number --rpc_url=[PROVIDER_URL]
 ```
 
-## `yeet contract-interact ADDRESS ABI`
+## `yeet contract ADDRESS ABI`
 
 exposes a `contract` instance in a REPL environment for making contract calls
 
 ```
 USAGE
-  $ yeet contract-interact ADDRESS ABI [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+  $ yeet contract ADDRESS ABI [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
     --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [-s <value>]
 
 ARGUMENTS
@@ -443,16 +443,16 @@ DESCRIPTION
   exposes a `contract` instance in a REPL environment for making contract calls
 
 ALIASES
-  $ yeet contract-interact
+  $ yeet contract
 
 EXAMPLES
-  $ yeet contract-interact 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet
+  $ yeet contract 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet
 
   > await contract.name()
 
   > await contract.getterFunction()
 
-  $ yeet contract-interact 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet
+  $ yeet contract 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet
 
   > await contract.mint()
 

@@ -12,7 +12,6 @@ export default class AbiList extends Command {
   static examples = ["<%= config.bin %> <%= command.id %>"];
 
   public async run(): Promise<void> {
-    console.log(`Total: ${chalk.bold.underline(store.size)}`);
     const _store = store.store;
     const abis = Object.keys(_store);
 
@@ -20,6 +19,7 @@ export default class AbiList extends Command {
       console.log("No available ABIs");
       return;
     }
+    console.log(`Total: ${chalk.bold.underline(store.size)}`);
     abis.forEach((abi) => {
       console.log(`- ${abi}`);
     });

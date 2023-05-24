@@ -8,8 +8,7 @@ import { providerNetworkFlags } from "../../lib/flags/networkFlags";
 import { getProvider } from "../../lib/provider";
 
 const store = new Conf();
-export default class ContractCall extends Command {
-  static aliases: string[] = ["contract-interact"];
+export default class ContractIndex extends Command {
   static description =
     "exposes a `contract` instance in a REPL environment for making contract calls";
 
@@ -41,7 +40,7 @@ export default class ContractCall extends Command {
   };
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(ContractCall);
+    const { args, flags } = await this.parse(ContractIndex);
 
     if (!ethers.isAddress(args.address)) {
       throw new Error("Invalid contract address");
