@@ -27,8 +27,7 @@ export default class AbiMethods extends Command {
     const { args } = await this.parse(AbiMethods);
 
     if (!store.has(args.name)) {
-      console.log(`${chalk.bold.underline(args.name)} does not exist!`);
-      return;
+      throw new Error(`${chalk.bold.underline(args.name)} does not exist!`);
     }
 
     const abi: any[] = JSON.parse(store.get(args.name) as string);

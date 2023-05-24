@@ -27,8 +27,7 @@ export default class AbiEvents extends Command {
     const { args } = await this.parse(AbiEvents);
 
     if (!store.has(args.name)) {
-      console.log(`${chalk.bold.underline(args.name)} does not exist!`);
-      return;
+      throw new Error(`${chalk.bold.underline(args.name)} does not exist!`);
     }
 
     const abi: any[] = JSON.parse(store.get(args.name) as string);

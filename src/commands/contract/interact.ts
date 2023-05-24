@@ -44,12 +44,10 @@ export default class ContractCall extends Command {
     const { args, flags } = await this.parse(ContractCall);
 
     if (!ethers.isAddress(args.address)) {
-      console.log("Invalid contract address");
-      return;
+      throw new Error("Invalid contract address");
     }
     if (!store.has(args.abi)) {
-      console.log(`${chalk.bold.underline(args.abi)} does not exist!`);
-      return;
+      throw new Error(`${chalk.bold.underline(args.abi)} does not exist!`);
     }
 
     const abi = store.get(args.abi) as InterfaceAbi;

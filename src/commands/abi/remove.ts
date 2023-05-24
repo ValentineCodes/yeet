@@ -22,8 +22,7 @@ export default class AbiRemove extends Command {
     const { args } = await this.parse(AbiRemove);
 
     if (!store.has(args.name)) {
-      console.log(`${chalk.bold.underline(args.name)} does not exist!`);
-      return;
+      throw new Error(`${chalk.bold.underline(args.name)} does not exist!`);
     }
     store.delete(args.name);
     console.log(`${chalk.bold.underline(args.name)} deleted successfully✅`);

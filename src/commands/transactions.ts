@@ -40,7 +40,7 @@ export default class Transactions extends Command {
 
     let address;
 
-    if (args.account.includes(".")) {
+    if (ethers.isValidName(args.account)) {
       address = await provider.resolveName(args.account);
     } else if (ethers.isAddress(args.account)) {
       address = args.account;
