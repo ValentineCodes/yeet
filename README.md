@@ -30,7 +30,7 @@ USAGE
 
   <!-- commands -->
 
-- [`yeet address-balance ADDRESS|ENS`](#yeet-address-balance-ADDRESS|ENS)
+- [`yeet account-balance ADDRESS|ENS`](#yeet-account-balance-ADDRESS|ENS)
 - [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
 - [`yeet ens-address ENS`](#yeet-ens-address-ens)
 - [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
@@ -50,13 +50,13 @@ USAGE
 - [`yeet tx TXHASH`](#yeet-tx-txhash)
 - [`yeet txs ACCOUNT`](#yeet-txs-account)
 
-## `yeet address-balance ADDRESS|ENS`
+## `yeet account-balance ADDRESS|ENS`
 
 gets address balance of address or ens. default network: localhost
 
 ```
 USAGE
-  $ yeet address-balance ADDRESS|ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+  $ yeet account-balance ADDRESS|ENS [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
     --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [--wei | --kwei | --mwei | --gwei |
     --szabo | --finney | --ether]
 
@@ -86,12 +86,12 @@ DESCRIPTION
   gets address balance of address or ens. default network: localhost
 
 ALIASES
-  $ yeet address-balance
+  $ yeet account-balance
 
 EXAMPLES
-  $ yeet address-balance <address|ens> --mainnet
-  $ yeet address-balance <address|ens> --rpc_url=[PROVIDER_URL]
-  $ yeet address-balance <address|ens> --mainnet --wei
+  $ yeet account-balance <address|ens> --mainnet
+  $ yeet account-balance <address|ens> --rpc_url=[PROVIDER_URL]
+  $ yeet account-balance <address|ens> --mainnet --wei
 ```
 
 ## `yeet address-ens ACCOUNT`

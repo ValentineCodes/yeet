@@ -7,7 +7,7 @@ import { ethUnitFlags } from "../../lib/flags/cryptoUnitFlags";
 import { formatUnits } from "../../lib/cryptoUnitConverter";
 
 export default class AddressBalance extends Command {
-  static aliases: string[] = ["address-balance"];
+  static aliases: string[] = ["account-balance"];
 
   static description =
     "gets address balance of address or ens. default network: localhost";
