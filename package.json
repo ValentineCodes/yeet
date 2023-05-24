@@ -22,6 +22,7 @@
     "@oclif/plugin-plugins": "^2.4.7",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
+    "conf": "10.2.0",
     "ethers": "^6.4.0",
     "uuid": "^9.0.0"
   },
