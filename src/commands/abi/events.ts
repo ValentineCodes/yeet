@@ -2,17 +2,17 @@ import { Args, Command } from "@oclif/core";
 import Conf from "conf";
 import * as chalk from "chalk";
 
-interface MethodInput {
+interface EventInput {
   name: string;
   type: string;
 }
 
 const store = new Conf();
 
-export default class AbiMethods extends Command {
-  static aliases: string[] = ["abi-methods"];
+export default class AbiEvents extends Command {
+  static aliases: string[] = ["abi-events"];
 
-  static description = "lists all methods of abi";
+  static description = "lists all events of abi";
 
   static examples = ["<%= config.bin %> <%= command.id %> <name>"];
 
@@ -24,15 +24,15 @@ export default class AbiMethods extends Command {
   };
 
   public async run(): Promise<void> {
-    const { args } = await this.parse(AbiMethods);
+    const { args } = await this.parse(AbiEvents);
 
     if (store.has(args.name)) {
       const abi: any[] = JSON.parse(store.get(args.name) as string);
-      const methods = abi.filter((el) => el.type === "function");
-      methods.forEach((method) => {
+      const events = abi.filter((el) => el.type === "event");
+      events.forEach((method) => {
         if (method.inputs) {
           const inputParams = method.inputs
-            .map((input: MethodInput) => `${input.type} ${input.name}`)
+            .map((input: EventInput) => `${input.type} ${input.name}`)
             .join(", ");
           console.log(`- ${method.name}(${inputParams})`);
         } else {
