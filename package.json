@@ -1,7 +1,7 @@
 {
   "name": "yeet-cli",
-  "version": "1.2.1",
-  "description": "A CLI for querying blockchain data, interacting with smart contracts and generating accounts",
+  "version": "1.3.0",
+  "description": "A CLI for querying blockchain data, interacting with smart contracts, transfer funds, generating accounts and more",
   "author": "Valentine Orga",
   "bin": {
     "yeet": "./bin/run"
@@ -67,6 +67,7 @@
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif readme && git add README.md",
     "command": "oclif generate command",
+    "readme": "oclif readme",
     "yeet": "./bin/dev",
     "yeet:debug": "DEBUG=* ./bin/dev",
     "yeet:run": "./bin/run",

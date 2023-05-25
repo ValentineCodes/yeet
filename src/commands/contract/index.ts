@@ -16,18 +16,15 @@ export default class ContractIndex extends Command {
     "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet",
     "> await contract.name()",
     "> await contract.getterFunction()",
-    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet",
+    "<%= config.bin %> <%= command.id %> 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --private_key=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet",
     "> await contract.mint()",
     "> await contract.setterFunction({value: '10000000000000'})",
   ];
 
   static flags = {
     ...providerNetworkFlags,
-    signer: Flags.string({
-      char: "s",
-      summary: "private key of transaction signer",
-      description:
-        "if specified, each command will be executed as a transaction",
+    private_key: Flags.string({
+      description: "private key of transaction signer",
     }),
   };
 
@@ -54,8 +51,8 @@ export default class ContractIndex extends Command {
 
     let contract;
 
-    if (flags.signer) {
-      const wallet = new ethers.Wallet(flags.signer).connect(provider);
+    if (flags.private_key) {
+      const wallet = new ethers.Wallet(flags.private_key).connect(provider);
 
       contract = new ethers.Contract(args.address, abi, wallet);
     } else {

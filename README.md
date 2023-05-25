@@ -1,6 +1,6 @@
 # Description
 
-A CLI for querying blockchain data, interacting with smart contracts and generating accounts
+A CLI for querying blockchain data, interacting with smart contracts, transfer funds, generating accounts and more
 
 [Video Demo](https://youtu.be/2xRcDvSwDOk)
 
@@ -21,7 +21,7 @@ $ yarn global add yeet-cli
 $ yeet COMMAND
 running command...
 $ yeet (--version)
-yeet-cli/1.0.0 darwin-x64 node-v16.20.0
+yeet-cli/1.3.0 darwin-x64 node-v16.20.0
 $ yeet --help [COMMAND]
 USAGE
   $ yeet COMMAND
@@ -42,29 +42,29 @@ USAGE
 - [`yeet abi-remove NAME`](#yeet-abi-remove-name)
 - [`yeet abi-total`](#yeet-abi-total)
 - [`yeet abi-update NAME ABIPATH`](#yeet-abi-update-name-abipath)
-
-* [`yeet account-balance ADDRESS|ENS`](#yeet-account-balance-ADDRESS|ENS)
-* [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
-* [`yeet ens-address ENS`](#yeet-ens-address-ens)
-* [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
-* [`yeet block-number`](#yeet-block-number)
-* [`yeet contract ADDRESS ABI`](#yeet-contract-address-abi)
-* [`yeet convert UNIT`](#yeet-convert-unit)
-* [`yeet events ACCOUNT`](#yeet-events-account)
-* [`yeet events-watch ADDRESS ABI EVENT`](#yeet-events-watch-address-abi-event)
-* [`yeet generateAccount`](#yeet-generateaccount)
-* [`yeet help [COMMANDS]`](#yeet-help-commands)
-* [`yeet plugins`](#yeet-plugins)
-* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
-* [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
-* [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
-* [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
-* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
-* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
-* [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
-* [`yeet plugins update`](#yeet-plugins-update)
-* [`yeet tx TXHASH`](#yeet-tx-txhash)
-* [`yeet txs ACCOUNT`](#yeet-txs-account)
+- [`yeet account-balance ADDRESS|ENS`](#yeet-account-balance-ADDRESS|ENS)
+- [`yeet address-ens ACCOUNT`](#yeet-address-ens-account)
+- [`yeet ens-address ENS`](#yeet-ens-address-ens)
+- [`yeet block [BLOCK_NUMBER]`](#yeet-block-block_number)
+- [`yeet block-number`](#yeet-block-number)
+- [`yeet contract ADDRESS ABI`](#yeet-contract-address-abi)
+- [`yeet convert UNIT`](#yeet-convert-unit)
+- [`yeet events ACCOUNT`](#yeet-events-account)
+- [`yeet events-watch ADDRESS ABI EVENT`](#yeet-events-watch-address-abi-event)
+- [`yeet generateAccount`](#yeet-generateaccount)
+- [`yeet help [COMMANDS]`](#yeet-help-commands)
+- [`yeet plugins`](#yeet-plugins)
+- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin)
+- [`yeet plugins:inspect PLUGIN...`](#yeet-pluginsinspect-plugin)
+- [`yeet plugins:install PLUGIN...`](#yeet-pluginsinstall-plugin-1)
+- [`yeet plugins:link PLUGIN`](#yeet-pluginslink-plugin)
+- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin)
+- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-1)
+- [`yeet plugins:uninstall PLUGIN...`](#yeet-pluginsuninstall-plugin-2)
+- [`yeet plugins update`](#yeet-plugins-update)
+- [`yeet transfer [FROM] TO AMOUNT`](#yeet-transfer-from-to-amount)
+- [`yeet tx TXHASH`](#yeet-tx-txhash)
+- [`yeet txs ACCOUNT`](#yeet-txs-account)
 
 ## `yeet abi NAME`
 
@@ -424,30 +424,27 @@ exposes a `contract` instance in a REPL environment for making contract calls
 ```
 USAGE
   $ yeet contract ADDRESS ABI [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
-    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [-s <value>]
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai] [--private_key <value>]
 
 ARGUMENTS
   ADDRESS  contract address
   ABI      abi name saved using `yeet abi-add`
 
 FLAGS
-  -s, --signer=<value>  private key of transaction signer
-  --arbitrum            provider network
-  --arbitrumGoerli      provider network
-  --goerli              provider network
-  --mainnet             provider network
-  --optimism            provider network
-  --optimismGoerli      provider network
-  --polygon             provider network
-  --polygonMumbai       provider network
-  --rpc_url=<value>     provider network rpc url
-  --sepolia             provider network
+  --arbitrum             provider network
+  --arbitrumGoerli       provider network
+  --goerli               provider network
+  --mainnet              provider network
+  --optimism             provider network
+  --optimismGoerli       provider network
+  --polygon              provider network
+  --polygonMumbai        provider network
+  --private_key=<value>  private key of transaction signer
+  --rpc_url=<value>      provider network rpc url
+  --sepolia              provider network
 
 DESCRIPTION
   exposes a `contract` instance in a REPL environment for making contract calls
-
-ALIASES
-  $ yeet contract
 
 EXAMPLES
   $ yeet contract 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --mainnet
@@ -456,16 +453,11 @@ EXAMPLES
 
   > await contract.getterFunction()
 
-  $ yeet contract 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --signer=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet
+  $ yeet contract 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 erc20ABI --private_key=0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e --mainnet
 
   > await contract.mint()
 
   > await contract.setterFunction({value: '10000000000000'})
-
-FLAG DESCRIPTIONS
-  -s, --signer=<value>  private key of transaction signer
-
-    if specified, each command will be executed as a transaction
 ```
 
 ## `yeet convert UNIT`
@@ -583,73 +575,6 @@ EXAMPLES
 ```
 
 _See code: [dist/commands/generateAccount.ts](https://github.com/ValentineCodes/yeet/blob/v1.0.0/dist/commands/generateAccount.ts)_
-
-## `yeet tx TXHASH`
-
-gets transaction object from transaction hash
-
-```
-USAGE
-  $ yeet tx TXHASH [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
-    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
-
-ARGUMENTS
-  TXHASH  transaction hash
-
-FLAGS
-  --arbitrum         provider network
-  --arbitrumGoerli   provider network
-  --goerli           provider network
-  --mainnet          provider network
-  --optimism         provider network
-  --optimismGoerli   provider network
-  --polygon          provider network
-  --polygonMumbai    provider network
-  --rpc_url=<value>  provider network rpc url
-  --sepolia          provider network
-
-DESCRIPTION
-  gets transaction object from transaction hash
-
-ALIASES
-  $ yeet tx
-
-EXAMPLES
-  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --mainnet
-
-  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --rpc_url=[PROVIDER_URL]
-```
-
-## `yeet txs ACCOUNT`
-
-lists all past transactions of account
-
-```
-USAGE
-  $ yeet txs ACCOUNT [--mainnet | --goerli | --sepolia] [-e]
-
-ARGUMENTS
-  ACCOUNT  account address
-
-FLAGS
-  -e, --export  exports transactions to 'transactions.json' file in current directory
-  --goerli      etherscan supported network
-  --mainnet     etherscan supported network
-  --sepolia     etherscan supported network
-
-DESCRIPTION
-  lists all past transactions of account
-
-ALIASES
-  $ yeet txs
-
-EXAMPLES
-  $ yeet txs yourens.eth --mainnet
-
-  $ yeet txs 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --rpc_url=[PROVIDER_URL]
-
-  $ yeet txs myens.eth --sepolia --export,-e
-```
 
 ## `yeet help [COMMANDS]`
 
@@ -902,6 +827,108 @@ FLAGS
 
 DESCRIPTION
   Update installed plugins.
+```
+
+## `yeet transfer TO AMOUNT PRIVATE_KEY`
+
+transfer funds
+
+```
+USAGE
+  $ yeet transfer TO AMOUNT PRIVATE_KEY [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum
+    | --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  TO           address of receiver
+  AMOUNT       amount in eth
+  PRIVATE_KEY  private key of transaction signer
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  transfer funds
+
+EXAMPLES
+  $ yeet transfer valentineorga.eth 0.5 0x182466b65247ebac8c2a0483aaede25af0d5a328a718674c6b6830f8b21d6f6e --mainnet
+```
+
+_See code: [dist/commands/transfer.ts](https://github.com/ValentineCodes/yeet/blob/v1.2.1/dist/commands/transfer.ts)_
+
+## `yeet tx TXHASH`
+
+gets transaction object from transaction hash
+
+```
+USAGE
+  $ yeet tx TXHASH [--mainnet | --rpc_url <value> |  | --sepolia | --goerli | --arbitrum |
+    --arbitrumGoerli | --optimism | --optimismGoerli | --polygon | --polygonMumbai]
+
+ARGUMENTS
+  TXHASH  transaction hash
+
+FLAGS
+  --arbitrum         provider network
+  --arbitrumGoerli   provider network
+  --goerli           provider network
+  --mainnet          provider network
+  --optimism         provider network
+  --optimismGoerli   provider network
+  --polygon          provider network
+  --polygonMumbai    provider network
+  --rpc_url=<value>  provider network rpc url
+  --sepolia          provider network
+
+DESCRIPTION
+  gets transaction object from transaction hash
+
+ALIASES
+  $ yeet tx
+
+EXAMPLES
+  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --mainnet
+
+  $ yeet tx 0x1936d8ee3676e640a44b1289cd8245e40288922510fb88266857a3140420f689 --rpc_url=[PROVIDER_URL]
+```
+
+## `yeet txs ACCOUNT`
+
+lists all past transactions of account
+
+```
+USAGE
+  $ yeet txs ACCOUNT [--mainnet | --goerli | --sepolia] [-e]
+
+ARGUMENTS
+  ACCOUNT  account address
+
+FLAGS
+  -e, --export  exports transactions to 'transactions.json' file in current directory
+  --goerli      etherscan supported network
+  --mainnet     etherscan supported network
+  --sepolia     etherscan supported network
+
+DESCRIPTION
+  lists all past transactions of account
+
+ALIASES
+  $ yeet txs
+
+EXAMPLES
+  $ yeet txs yourens.eth --mainnet
+
+  $ yeet txs 0xF51CD0d607c82db2B7EB670554C82C276A9549B4 --rpc_url=[PROVIDER_URL]
+
+  $ yeet txs myens.eth --sepolia --export,-e
 ```
 
 <!-- commandsstop -->
