@@ -7,6 +7,7 @@ import { getProvider } from "../../lib/provider";
 import { ETHERSCAN_KEY } from "../../utils/constants";
 import { getEtherscanDomain } from "../../lib/etherscan";
 import { etherscanNetworkFlags } from "../../lib/flags/networkFlags";
+import { isENS } from "../../utils/helpers";
 
 export default class EventsIndex extends Command {
   static description = "get past event logs of given address";
@@ -44,7 +45,7 @@ export default class EventsIndex extends Command {
 
     let address;
 
-    if (ethers.isValidName(args.account)) {
+    if (isENS(args.account)) {
       address = await provider.resolveName(args.account);
     } else if (ethers.isAddress(args.account)) {
       address = args.account;

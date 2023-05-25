@@ -8,6 +8,7 @@ import * as fs from "fs";
 import { ETHERSCAN_KEY } from "../utils/constants";
 import { getEtherscanDomain } from "../lib/etherscan";
 import { etherscanNetworkFlags } from "../lib/flags/networkFlags";
+import { isENS } from "../utils/helpers";
 
 export default class Transactions extends Command {
   static aliases: string[] = ["txs"];
@@ -40,7 +41,7 @@ export default class Transactions extends Command {
 
     let address;
 
-    if (ethers.isValidName(args.account)) {
+    if (isENS(args.account)) {
       address = await provider.resolveName(args.account);
     } else if (ethers.isAddress(args.account)) {
       address = args.account;
